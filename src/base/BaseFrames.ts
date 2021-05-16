@@ -5,8 +5,7 @@ export const enum BaseFrames {
 
     EscMenuButtonTemplate = "EscMenuButtonTemplate",
     EscMenuButtonTextTemplate = "EscMenuButtonTextTemplate",
-    EscMenuButtonBackdropTemplate = "EscMenuButtonBackdropTemplate",
-    EscMenuButtonDisabledBackdropTemplate = "EscMenuButtonDisabledBackdropTemplate",
+
     EscMenuRadioButtonTemplate = "EscMenuRadioButtonTemplate",
 
     EscMenuPopupMenuTitleTemplate = "EscMenuPopupMenuTitleTemplate",
@@ -21,4 +20,14 @@ export const enum BaseFrames {
 
 
     StandardScrollBarTemplate = "StandardScrollBarTemplate",
+
+    //BackDrop
+    EscMenuButtonBackdropTemplate = "EscMenuButtonBackdropTemplate",
+    EscMenuButtonPushedBackdropTemplate = "EscMenuButtonPushedBackdropTemplate",
+    EscMenuButtonDisabledBackdropTemplate = "EscMenuButtonDisabledBackdropTemplate",
+    EscMenuButtonDisabledPushedBackdropTemplate = "EscMenuButtonDisabledPushedBackdropTemplate",
+    EscMenuControlBackdropTemplate = "EscMenuControlBackdropTemplate",
+
+    //HighLight
+    EscMenuButtonMouseOverHighlightTemplate = "EscMenuButtonMouseOverHighlightTemplate",
 }

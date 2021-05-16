@@ -8,12 +8,12 @@ let allianceDialog = testMakeAllianceDialog();
 let chatDialog = testMakeChatDialog();
 
 const allianceDialogRoot = new Root({
-    children: [allianceDialog],
-    includeFiles: ["UI\\FrameDef\\UI\\EscMenuTemplates.fdf"],
+    Children: [allianceDialog],
+    IncludeFiles: ["UI\\FrameDef\\UI\\EscMenuTemplates.fdf"],
 });
 const chatDialogRoot = new Root({
-    children: [chatDialog],
-    includeFiles: ["UI\\FrameDef\\UI\\EscMenuTemplates.fdf"],
+    Children: [chatDialog],
+    IncludeFiles: ["UI\\FrameDef\\UI\\EscMenuTemplates.fdf"],
 });
 
 

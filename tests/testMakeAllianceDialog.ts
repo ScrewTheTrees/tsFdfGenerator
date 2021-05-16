@@ -14,88 +14,88 @@ import {FrameScrollBar} from "../src/fdf/FrameScrollbar";
 
 export function testMakeAllianceDialog() {
     let allianceBackdrop = new FrameBackdrop("AllianceBackdrop", {
-        decorateFileName: true,
-        backdropTileBackground: true,
-        backdropBackground: BaseBackgrounds.EscMenuBackground,
-        backdropEdgeFile: BaseBorders.EscMenuBorder,
-        backdropBackgroundSize: 0.128,
-        backdropBackgroundInsets: new Vector4(0.01, 0.01, 0.01, 0.01),
-        backdropCornerFlags: CornerFlagsAll(),
+        DecorateFileNames: true,
+        BackdropTileBackground: true,
+        BackdropBackground: BaseBackgrounds.EscMenuBackground,
+        BackdropEdgeFile: BaseBorders.EscMenuBorder,
+        BackdropBackgroundSize: 0.128,
+        BackdropBackgroundInsets: new Vector4(0.01, 0.01, 0.01, 0.01),
+        BackdropCornerFlags: CornerFlagsAll(),
     });
 
     let allianceDialog = new FrameDialog("AllianceDialog", {
-        height: 0.576,
-        width: 0.48,
-        children: [allianceBackdrop],
-        dialogBackdrop: allianceBackdrop,
+        Height: 0.576,
+        Width: 0.48,
+        Children: [allianceBackdrop],
+        DialogBackdrop: allianceBackdrop,
     });
     let allianceTitle = new FrameText("AllianceTitle", {
-        inheritsFrom: BaseFrames.EscMenuTitleTextTemplate,
-        points: [
+        InheritsFrom: BaseFrames.EscMenuTitleTextTemplate,
+        Points: [
             new SetPoint(PointAlign.TOPLEFT, allianceDialog, PointAlign.TOPLEFT, 0.03375, -0.03),
         ],
-        fontJustificationH: FontJustify.JUSTIFYLEFT,
-        text: "ALLIANCES"
+        FontJustificationH: FontJustify.JUSTIFYLEFT,
+        Text: "ALLIANCES"
     });
     let resourceTradingTitle = new FrameText("ResourceTradingTitle", {
-        inheritsFrom: BaseFrames.EscMenuTitleTextTemplate,
-        points: [
+        InheritsFrom: BaseFrames.EscMenuTitleTextTemplate,
+        Points: [
             new SetPoint(PointAlign.TOPRIGHT, allianceDialog, PointAlign.TOPRIGHT, -0.045, -0.03),
         ],
-        fontJustificationH: FontJustify.JUSTIFYLEFT,
-        text: "RESOURCE_TRADING"
+        FontJustificationH: FontJustify.JUSTIFYLEFT,
+        Text: "RESOURCE_TRADING"
     });
     let playerHeader = new FrameText("PlayersHeader", {
-        inheritsFrom: BaseFrames.EscMenuLabelTextSmallTemplate,
-        points: [
+        InheritsFrom: BaseFrames.EscMenuLabelTextSmallTemplate,
+        Points: [
             new SetPoint(PointAlign.TOPLEFT, allianceDialog, PointAlign.TOPLEFT, 0.03625, -0.060875),
         ],
-        text: "PLAYERS"
+        Text: "PLAYERS"
     });
     let allyHeader = new FrameText("AllyHeader", {
-        inheritsFrom: BaseFrames.EscMenuLabelTextSmallTemplate,
-        width: 0.037,
-        points: [
+        InheritsFrom: BaseFrames.EscMenuLabelTextSmallTemplate,
+        Width: 0.037,
+        Points: [
             new SetPoint(PointAlign.BOTTOMLEFT, playerHeader, PointAlign.BOTTOMLEFT, 0.221025, 0.0),
         ],
-        fontJustificationH: FontJustify.JUSTIFYCENTER,
-        text: "ALLY"
+        FontJustificationH: FontJustify.JUSTIFYCENTER,
+        Text: "ALLY"
     });
     let visionHeader = new FrameText("VisionHeader", {
-        inheritsFrom: BaseFrames.EscMenuLabelTextSmallTemplate,
-        width: 0.037,
-        points: [
+        InheritsFrom: BaseFrames.EscMenuLabelTextSmallTemplate,
+        Width: 0.037,
+        Points: [
             new SetPoint(PointAlign.BOTTOMLEFT, allyHeader, PointAlign.BOTTOMRIGHT, 0.013, 0.0),
         ],
-        fontJustificationH: FontJustify.JUSTIFYCENTER,
-        text: "SHARE_VISION"
+        FontJustificationH: FontJustify.JUSTIFYCENTER,
+        Text: "SHARE_VISION"
     });
     let unitsHeader = new FrameText("UnitsHeader", {
-        inheritsFrom: BaseFrames.EscMenuLabelTextSmallTemplate,
-        width: 0.037,
-        points: [
+        InheritsFrom: BaseFrames.EscMenuLabelTextSmallTemplate,
+        Width: 0.037,
+        Points: [
             new SetPoint(PointAlign.BOTTOMLEFT, visionHeader, PointAlign.BOTTOMRIGHT, 0.013, 0.0),
         ],
-        fontJustificationH: FontJustify.JUSTIFYCENTER,
-        text: "SHARE_UNITS"
+        FontJustificationH: FontJustify.JUSTIFYCENTER,
+        Text: "SHARE_UNITS"
     });
     let goldHeader = new FrameText("GoldHeader", {
-        inheritsFrom: BaseFrames.EscMenuLabelTextSmallTemplate,
-        width: 0.048,
-        points: [
+        InheritsFrom: BaseFrames.EscMenuLabelTextSmallTemplate,
+        Width: 0.048,
+        Points: [
             new SetPoint(PointAlign.BOTTOMLEFT, unitsHeader, PointAlign.BOTTOMRIGHT, 0.02275, 0.0),
         ],
-        fontJustificationH: FontJustify.JUSTIFYCENTER,
-        text: "GOLD"
+        FontJustificationH: FontJustify.JUSTIFYCENTER,
+        Text: "GOLD"
     });
     let lumberHeader = new FrameText("LumberHeader", {
-        inheritsFrom: BaseFrames.EscMenuLabelTextSmallTemplate,
-        width: 0.048,
-        points: [
+        InheritsFrom: BaseFrames.EscMenuLabelTextSmallTemplate,
+        Width: 0.048,
+        Points: [
             new SetPoint(PointAlign.BOTTOMLEFT, goldHeader, PointAlign.BOTTOMRIGHT, 0.01, 0.0),
         ],
-        fontJustificationH: FontJustify.JUSTIFYCENTER,
-        text: "LUMBER"
+        FontJustificationH: FontJustify.JUSTIFYCENTER,
+        Text: "LUMBER"
     });
     allianceDialog.addChild(allianceTitle);
     allianceDialog.addChild(resourceTradingTitle);
@@ -107,53 +107,53 @@ export function testMakeAllianceDialog() {
     allianceDialog.addChild(lumberHeader);
 
     let allianceAcceptButton = new FrameGlueTextButton("AllianceAcceptButton", {
-        inheritsFrom: BaseFrames.EscMenuButtonTemplate,
-        inheritsWithChildren: true,
-        width: 0.13,
-        points: [
+        InheritsFrom: BaseFrames.EscMenuButtonTemplate,
+        InheritsWithChildren: true,
+        Width: 0.13,
+        Points: [
             new SetPoint(PointAlign.BOTTOMRIGHT, allianceDialog, PointAlign.BOTTOM, -0.003, 0.03),
         ],
-        buttonText: "AllianceAcceptButtonText",
-        children: [
+        ButtonText: "AllianceAcceptButtonText",
+        Children: [
             new FrameText("AllianceAcceptButtonText", {
-                inheritsFrom: BaseFrames.EscMenuButtonTextTemplate,
-                text: "ACCEPT",
+                InheritsFrom: BaseFrames.EscMenuButtonTextTemplate,
+                Text: "ACCEPT",
             }),
         ]
     });
     let allianceCancelButton = new FrameGlueTextButton("AllianceCancelButton", {
-        inheritsFrom: BaseFrames.EscMenuButtonTemplate,
-        inheritsWithChildren: true,
-        width: 0.13,
-        points: [
+        InheritsFrom: BaseFrames.EscMenuButtonTemplate,
+        InheritsWithChildren: true,
+        Width: 0.13,
+        Points: [
             new SetPoint(PointAlign.LEFT, allianceAcceptButton, PointAlign.RIGHT, 0.005, 0.0),
         ],
-        buttonText: "AllianceCancelButtonText",
-        children: [
+        ButtonText: "AllianceCancelButtonText",
+        Children: [
             new FrameText("AllianceCancelButtonText", {
-                inheritsFrom: BaseFrames.EscMenuButtonTextTemplate,
-                text: "CANCEL",
+                InheritsFrom: BaseFrames.EscMenuButtonTextTemplate,
+                Text: "CANCEL",
             }),
         ]
     });
     let alliedVictoryCheckBox = new FrameGlueCheckbox("AlliedVictoryCheckBox", {
-        inheritsFrom: BaseFrames.EscMenuCheckBoxTemplate,
-        inheritsWithChildren: true,
-        width: 0.024,
-        height: 0.024,
-        points: [
+        InheritsFrom: BaseFrames.EscMenuCheckBoxTemplate,
+        InheritsWithChildren: true,
+        Width: 0.024,
+        Height: 0.024,
+        Points: [
             new SetPoint(PointAlign.BOTTOM, allianceDialog, PointAlign.BOTTOM, -0.056875, 0.06875),
         ],
     });
     let alliedVictoryLabel = new FrameText("AlliedVictoryLabel", {
-        points: [
+        Points: [
             new SetPoint(PointAlign.LEFT, alliedVictoryCheckBox, PointAlign.RIGHT, 0.01, 0.0),
         ],
-        text: "ALLIED_VICTORY",
+        Text: "ALLIED_VICTORY",
     });
     let allianceDialogScrollBar = new FrameScrollBar("AllianceDialogScrollBar", {
-        inheritsFrom: BaseFrames.StandardScrollBarTemplate,
-        inheritsWithChildren: true,
+        InheritsFrom: BaseFrames.StandardScrollBarTemplate,
+        InheritsWithChildren: true,
     });
 
     allianceDialog.addChild(allianceAcceptButton);

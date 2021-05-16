@@ -5,11 +5,11 @@ import {FrameBackdrop} from "./FrameBackdrop";
 
 
 export type FrameDialogArgs = FrameBaseArgs & {
-    dialogBackdrop?: FrameBackdrop | BaseFrames,
+    DialogBackdrop?: FrameBackdrop | BaseFrames,
 };
 
 export class FrameDialog extends FrameBase {
-    public dialogBackdrop?: FrameBackdrop | BaseFrames;
+    public DialogBackdrop?: FrameBackdrop | BaseFrames;
 
     public constructor(name: string, args?: FrameDialogArgs) {
         super(name);
@@ -21,7 +21,7 @@ export class FrameDialog extends FrameBase {
         str.pushIndent();
 
         this.writeCommonData(str);
-        this.writeFrame(str, this.dialogBackdrop, "DialogBackdrop");
+        this.writeFrame(str, this.DialogBackdrop, "DialogBackdrop");
 
         this.printChildren(str);
 

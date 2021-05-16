@@ -3,11 +3,11 @@ import {FrameBase, FrameBaseArgs} from "./FrameBase";
 
 
 export type FrameGlueTextButtonArgs = FrameBaseArgs & {
-    buttonText?: string,
+    ButtonText?: string,
 };
 
 export class FrameGlueTextButton extends FrameBase {
-    public buttonText: string = "";
+    public ButtonText: string = "";
 
     public constructor(name: string, args?: FrameGlueTextButtonArgs) {
         super(name);
@@ -19,7 +19,7 @@ export class FrameGlueTextButton extends FrameBase {
         str.pushIndent();
 
         this.writeCommonData(str);
-        str.writeIndentation().writeString(`ButtonText "${this.buttonText}",\n`)
+        str.writeIndentation().writeString(`ButtonText "${this.ButtonText}",\n`)
 
         this.printChildren(str);
 

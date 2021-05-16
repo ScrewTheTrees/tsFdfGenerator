@@ -32,7 +32,7 @@ export class SetPoint implements IWriteAble {
         str.writeIndentation()
             .writeString(`SetPoint ${this.myPoint}, `);
 
-        str.writeString(`"${typeof this.parentFrame == "string" ? this.parentFrame : this.parentFrame.name}", `);
+        str.writeString(`"${typeof this.parentFrame == "string" ? this.parentFrame : this.parentFrame.Name}", `);
         str.writeString(`${this.parentPoint}, ${this.xx}, ${this.yy}, \n`);
     }
 

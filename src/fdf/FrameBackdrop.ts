@@ -6,28 +6,28 @@ import {BaseBorders} from "../base/BaseBorders";
 import {StringStream} from "../StringStream";
 
 export type FrameBackdropTypes = FrameBaseArgs & {
-    backdropBackground?: BaseBackgrounds,
-    backdropCornerFlags?: Set<CornerFlags>,
-    backdropCornerSize?: number,
-    backdropBackgroundSize?: number,
-    backdropBackgroundInsets?: Vector4,
-    backdropEdgeFile?: BaseBorders,
+    BackdropBackground?: BaseBackgrounds,
+    BackdropCornerFlags?: Set<CornerFlags>,
+    BackdropCornerSize?: number,
+    BackdropBackgroundSize?: number,
+    BackdropBackgroundInsets?: Vector4,
+    BackdropEdgeFile?: BaseBorders,
 
-    backdropTileBackground?: boolean,
-    backdropBlendAll?: boolean,
+    BackdropTileBackground?: boolean,
+    BackdropBlendAll?: boolean,
 };
 
 export class FrameBackdrop extends FrameBase {
-    public backdropBackground?: BaseBackgrounds;
-    public backdropCornerFlags: Set<CornerFlags> = new Set();
-    public backdropCornerSize?: number;
-    public backdropBackgroundSize?: number;
-    public backdropBackgroundInsets?: Vector4;
-    public backdropEdgeFile?: BaseBorders;
+    public BackdropBackground?: BaseBackgrounds;
+    public BackdropCornerFlags: Set<CornerFlags> = new Set();
+    public BackdropCornerSize?: number;
+    public BackdropBackgroundSize?: number;
+    public BackdropBackgroundInsets?: Vector4;
+    public BackdropEdgeFile?: BaseBorders;
 
     //Flags
-    public backdropTileBackground: boolean = false;
-    public backdropBlendAll: boolean = false;
+    public BackdropTileBackground: boolean = false;
+    public BackdropBlendAll: boolean = false;
 
     public constructor(name: string, args?: FrameBackdropTypes) {
         super(name);
@@ -39,15 +39,15 @@ export class FrameBackdrop extends FrameBase {
         str.pushIndent();
         this.writeCommonData(str);
 
-        if (this.backdropTileBackground) str.writeIndentation().writeString(`BackdropTileBackground,\n`);
-        if (this.backdropBlendAll) str.writeIndentation().writeString(`BackdropBlendAll,\n`);
+        if (this.BackdropTileBackground) str.writeIndentation().writeString(`BackdropTileBackground,\n`);
+        if (this.BackdropBlendAll) str.writeIndentation().writeString(`BackdropBlendAll,\n`);
         this.writeCornerFlags(str);
-        if (this.backdropBackground) str.writeIndentation().writeString(`BackdropBackground ${this.backdropBackground},\n`);
+        if (this.BackdropBackground) str.writeIndentation().writeString(`BackdropBackground ${this.BackdropBackground},\n`);
 
-        if (this.backdropCornerSize) str.writeIndentation().writeString(`BackdropCornerSize ${this.backdropCornerSize},\n`);
-        if (this.backdropBackgroundSize) str.writeIndentation().writeString(`BackdropBackgroundSize ${this.backdropBackgroundSize},\n`);
-        if (this.backdropBackgroundInsets) str.writeIndentation().writeString(`BackdropBackgroundSize ${this.backdropBackgroundInsets.toString()},\n`);
-        if (this.backdropEdgeFile) str.writeIndentation().writeString(`BackdropEdgeFile ${this.backdropEdgeFile},\n`);
+        if (this.BackdropCornerSize) str.writeIndentation().writeString(`BackdropCornerSize ${this.BackdropCornerSize},\n`);
+        if (this.BackdropBackgroundSize) str.writeIndentation().writeString(`BackdropBackgroundSize ${this.BackdropBackgroundSize},\n`);
+        if (this.BackdropBackgroundInsets) str.writeIndentation().writeString(`BackdropBackgroundInsets ${this.BackdropBackgroundInsets.toString()},\n`);
+        if (this.BackdropEdgeFile) str.writeIndentation().writeString(`BackdropEdgeFile ${this.BackdropEdgeFile},\n`);
 
         this.printChildren(str);
 
@@ -55,10 +55,10 @@ export class FrameBackdrop extends FrameBase {
         str.writeIndentation().writeString("}\n");
     }
     private writeCornerFlags(str: StringStream) {
-        if (this.backdropCornerFlags.size > 0) {
+        if (this.BackdropCornerFlags.size > 0) {
             str.writeIndentation().writeString("BackdropCornerFlags ");
             let first = true;
-            for (let entry of this.backdropCornerFlags) {
+            for (let entry of this.BackdropCornerFlags) {
                 if (!first) str.writeString("|")
                 str.writeString(entry)
                 first = false;

@@ -17,68 +17,68 @@ import {FrameMenu} from "../src/fdf/FrameMenu";
 
 export function testMakeChatDialog() {
     let chatDialog = new FrameFrame("ChatDialog", {
-        width: 0.384,
-        height: 0.432,
-        children: [
+        Width: 0.384,
+        Height: 0.432,
+        Children: [
             new FrameBackdrop("ChatBackdrop", {
-                setAllPoints: true,
-                decorateFileName: true,
-                backdropTileBackground: true,
-                backdropBlendAll: true,
-                backdropBackground: BaseBackgrounds.EscMenuBackground,
-                backdropEdgeFile: BaseBorders.EscMenuBorder,
-                backdropCornerFlags: CornerFlagsAll(),
-                backdropCornerSize: 0.048,
-                backdropBackgroundSize: 0.128,
-                backdropBackgroundInsets: new Vector4(0.01, 0.01, 0.01, 0.01),
+                SetAllPoints: true,
+                DecorateFileNames: true,
+                BackdropTileBackground: true,
+                BackdropBlendAll: true,
+                BackdropBackground: BaseBackgrounds.EscMenuBackground,
+                BackdropEdgeFile: BaseBorders.EscMenuBorder,
+                BackdropCornerFlags: CornerFlagsAll(),
+                BackdropCornerSize: 0.048,
+                BackdropBackgroundSize: 0.128,
+                BackdropBackgroundInsets: new Vector4(0.01, 0.01, 0.01, 0.01),
             }),
         ]
     });
     let chatTitle = new FrameText("ChatTitle", {
-        inheritsFrom: BaseFrames.EscMenuTitleTextTemplate,
-        points: [new SetPoint(PointAlign.TOP, chatDialog, PointAlign.TOP, 0.0, -0.03)],
-        fontJustificationH: FontJustify.JUSTIFYCENTER,
-        text: "MESSAGING"
+        InheritsFrom: BaseFrames.EscMenuTitleTextTemplate,
+        Points: [new SetPoint(PointAlign.TOP, chatDialog, PointAlign.TOP, 0.0, -0.03)],
+        FontJustificationH: FontJustify.JUSTIFYCENTER,
+        Text: "MESSAGING"
     });
     let chatPlayerRadioButton = new FrameGlueCheckbox("ChatPlayerRadioButton", {
-        inheritsFrom: BaseFrames.EscMenuRadioButtonTemplate, inheritsWithChildren: true,
-        points: [new SetPoint(PointAlign.TOPLEFT, chatDialog, PointAlign.TOPLEFT, 0.035, -0.070375)],
+        InheritsFrom: BaseFrames.EscMenuRadioButtonTemplate, InheritsWithChildren: true,
+        Points: [new SetPoint(PointAlign.TOPLEFT, chatDialog, PointAlign.TOPLEFT, 0.035, -0.070375)],
     });
     let chatAlliesRadioButton = new FrameGlueCheckbox("ChatAlliesRadioButton", {
-        inheritsFrom: BaseFrames.EscMenuRadioButtonTemplate, inheritsWithChildren: true,
-        points: [new SetPoint(PointAlign.TOP, chatPlayerRadioButton, PointAlign.BOTTOM, 0.0, -0.012)],
+        InheritsFrom: BaseFrames.EscMenuRadioButtonTemplate, InheritsWithChildren: true,
+        Points: [new SetPoint(PointAlign.TOP, chatPlayerRadioButton, PointAlign.BOTTOM, 0.0, -0.012)],
     });
     let chatObserversRadioButton = new FrameGlueCheckbox("ChatObserversRadioButton", {
-        inheritsFrom: BaseFrames.EscMenuRadioButtonTemplate, inheritsWithChildren: true,
-        points: [new SetPoint(PointAlign.TOP, chatAlliesRadioButton, PointAlign.BOTTOM, 0.0, -0.002)],
+        InheritsFrom: BaseFrames.EscMenuRadioButtonTemplate, InheritsWithChildren: true,
+        Points: [new SetPoint(PointAlign.TOP, chatAlliesRadioButton, PointAlign.BOTTOM, 0.0, -0.002)],
     });
     let chatEveryoneRadioButton = new FrameGlueCheckbox("ChatEveryoneRadioButton", {
-        inheritsFrom: BaseFrames.EscMenuRadioButtonTemplate, inheritsWithChildren: true,
-        points: [new SetPoint(PointAlign.TOP, chatObserversRadioButton, PointAlign.BOTTOM, 0.0, -0.002)],
+        InheritsFrom: BaseFrames.EscMenuRadioButtonTemplate, InheritsWithChildren: true,
+        Points: [new SetPoint(PointAlign.TOP, chatObserversRadioButton, PointAlign.BOTTOM, 0.0, -0.002)],
     });
     let chatPlayerLabel = new FrameText("ChatPlayerLabel", {
-        inheritsFrom: BaseFrames.EscMenuInfoTextTemplate, inheritsWithChildren: true,
-        fontColor: new Color(0.99, 0.827, 0.0705, 1.0),
-        points: [new SetPoint(PointAlign.LEFT, chatPlayerRadioButton, PointAlign.RIGHT, 0.005, 0.0)],
-        text: "COLON_SEND_TO_PLAYER",
+        InheritsFrom: BaseFrames.EscMenuInfoTextTemplate, InheritsWithChildren: true,
+        FontColor: new Color(0.99, 0.827, 0.0705, 1.0),
+        Points: [new SetPoint(PointAlign.LEFT, chatPlayerRadioButton, PointAlign.RIGHT, 0.005, 0.0)],
+        Text: "COLON_SEND_TO_PLAYER",
     });
     let chatAlliesLabel = new FrameText("ChatAlliesLabel", {
-        inheritsFrom: BaseFrames.EscMenuInfoTextTemplate, inheritsWithChildren: true,
-        fontColor: new Color(0.99, 0.827, 0.0705, 1.0),
-        points: [new SetPoint(PointAlign.LEFT, chatPlayerRadioButton, PointAlign.RIGHT, 0.005, 0.0)],
-        text: "SEND_TO_ALLIES",
+        InheritsFrom: BaseFrames.EscMenuInfoTextTemplate, InheritsWithChildren: true,
+        FontColor: new Color(0.99, 0.827, 0.0705, 1.0),
+        Points: [new SetPoint(PointAlign.LEFT, chatPlayerRadioButton, PointAlign.RIGHT, 0.005, 0.0)],
+        Text: "SEND_TO_ALLIES",
     });
     let chatObserversLabel = new FrameText("ChatObserversLabel", {
-        inheritsFrom: BaseFrames.EscMenuInfoTextTemplate, inheritsWithChildren: true,
-        fontColor: new Color(0.99, 0.827, 0.0705, 1.0),
-        points: [new SetPoint(PointAlign.LEFT, chatObserversRadioButton, PointAlign.RIGHT, 0.005, 0.0)],
-        text: "SEND_TO_OBSERVERS",
+        InheritsFrom: BaseFrames.EscMenuInfoTextTemplate, InheritsWithChildren: true,
+        FontColor: new Color(0.99, 0.827, 0.0705, 1.0),
+        Points: [new SetPoint(PointAlign.LEFT, chatObserversRadioButton, PointAlign.RIGHT, 0.005, 0.0)],
+        Text: "SEND_TO_OBSERVERS",
     });
     let chatEveryoneLabel = new FrameText("ChatEveryoneLabel", {
-        inheritsFrom: BaseFrames.EscMenuInfoTextTemplate, inheritsWithChildren: true,
-        fontColor: new Color(0.99, 0.827, 0.0705, 1.0),
-        points: [new SetPoint(PointAlign.LEFT, chatEveryoneRadioButton, PointAlign.RIGHT, 0.005, 0.0)],
-        text: "SEND_TO_EVERYONE",
+        InheritsFrom: BaseFrames.EscMenuInfoTextTemplate, InheritsWithChildren: true,
+        FontColor: new Color(0.99, 0.827, 0.0705, 1.0),
+        Points: [new SetPoint(PointAlign.LEFT, chatEveryoneRadioButton, PointAlign.RIGHT, 0.005, 0.0)],
+        Text: "SEND_TO_EVERYONE",
     });
 
     chatDialog.addChild(chatTitle);
@@ -92,36 +92,36 @@ export function testMakeChatDialog() {
     chatDialog.addChild(chatEveryoneLabel);
 
     let EscMenuPopupMenuBackdropTemplate = new FrameBackdrop("EscMenuPopupMenuBackdropTemplate", {
-        inheritsFrom: BaseFrames.EscMenuButtonBackdropTemplate,
+        InheritsFrom: BaseFrames.EscMenuButtonBackdropTemplate,
     });
     let EscMenuPopupMenuDisabledBackdropTemplate = new FrameBackdrop("EscMenuPopupMenuDisabledBackdropTemplate", {
-        inheritsFrom: BaseFrames.EscMenuButtonDisabledBackdropTemplate,
+        InheritsFrom: BaseFrames.EscMenuButtonDisabledBackdropTemplate,
     });
     let PopupMenuTitleTemplate = new FrameGlueTextButton("PopupMenuTitleTemplate", {
-        inheritsFrom: BaseFrames.EscMenuPopupMenuTitleTemplate,
-        inheritsWithChildren: true,
+        InheritsFrom: BaseFrames.EscMenuPopupMenuTitleTemplate,
+        InheritsWithChildren: true,
     });
     let PopupMenuArrowTemplate = new FrameButton("PopupMenuArrowTemplate", {
-        inheritsFrom: BaseFrames.EscMenuPopupMenuArrowTemplate,
-        inheritsWithChildren: true,
+        InheritsFrom: BaseFrames.EscMenuPopupMenuArrowTemplate,
+        InheritsWithChildren: true,
     });
     let PopupMenuMenuTemplate = new FrameMenu("PopupMenuMenuTemplate", {
-        inheritsFrom: BaseFrames.EscMenuPopupMenuMenuTemplate,
-        inheritsWithChildren: true,
+        InheritsFrom: BaseFrames.EscMenuPopupMenuMenuTemplate,
+        InheritsWithChildren: true,
     });
 
     let chatPlayerMenu = new FramePopupMenu("ChatPlayerMenu", {
-        width: 0.19625,
-        height: 0.03,
-        popupButtonInset: 0.01,
-        points: [new SetPoint(PointAlign.RIGHT, chatDialog, PointAlign.TOPRIGHT, -0.031, -0.0765)],
-        controlBackdrop: EscMenuPopupMenuBackdropTemplate,
-        controlDisabledBackdrop: EscMenuPopupMenuDisabledBackdropTemplate,
-        popupTitleFrame: PopupMenuTitleTemplate,
-        popupArrowFrame: PopupMenuArrowTemplate,
-        popupMenuFrame: PopupMenuMenuTemplate,
+        Width: 0.19625,
+        Height: 0.03,
+        PopupButtonInset: 0.01,
+        Points: [new SetPoint(PointAlign.RIGHT, chatDialog, PointAlign.TOPRIGHT, -0.031, -0.0765)],
+        ControlBackdrop: EscMenuPopupMenuBackdropTemplate,
+        ControlDisabledBackdrop: EscMenuPopupMenuDisabledBackdropTemplate,
+        PopupTitleFrame: PopupMenuTitleTemplate,
+        PopupArrowFrame: PopupMenuArrowTemplate,
+        PopupMenuFrame: PopupMenuMenuTemplate,
 
-        children: [
+        Children: [
             EscMenuPopupMenuBackdropTemplate,
             EscMenuPopupMenuDisabledBackdropTemplate,
             PopupMenuTitleTemplate,

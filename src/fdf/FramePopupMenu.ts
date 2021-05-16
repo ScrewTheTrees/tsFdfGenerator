@@ -5,24 +5,24 @@ import {FrameBackdrop} from "./FrameBackdrop";
 
 
 export type FramePopupMenuArgs = FrameBaseArgs & {
-    popupButtonInset?: number,
-    controlBackdrop?: BaseFrames | FrameBackdrop,
-    controlDisabledBackdrop?: BaseFrames | FrameBackdrop,
+    PopupButtonInset?: number,
+    ControlBackdrop?: BaseFrames | FrameBackdrop,
+    ControlDisabledBackdrop?: BaseFrames | FrameBackdrop,
 
-    popupTitleFrame?: BaseFrames | FrameBase,
-    popupArrowFrame?: BaseFrames | FrameBase,
-    popupMenuFrame?: BaseFrames | FrameBase,
+    PopupTitleFrame?: BaseFrames | FrameBase,
+    PopupArrowFrame?: BaseFrames | FrameBase,
+    PopupMenuFrame?: BaseFrames | FrameBase,
 };
 
 export class FramePopupMenu extends FrameBase {
-    public popupButtonInset?: number;
+    public PopupButtonInset?: number;
 
-    public controlBackdrop?: BaseFrames | FrameBackdrop;
-    public controlDisabledBackdrop?: BaseFrames | FrameBackdrop;
+    public ControlBackdrop?: BaseFrames | FrameBackdrop;
+    public ControlDisabledBackdrop?: BaseFrames | FrameBackdrop;
 
-    public popupTitleFrame?: BaseFrames | FrameBase;
-    public popupArrowFrame?: BaseFrames | FrameBase;
-    public popupMenuFrame?: BaseFrames | FrameBase;
+    public PopupTitleFrame?: BaseFrames | FrameBase;
+    public PopupArrowFrame?: BaseFrames | FrameBase;
+    public PopupMenuFrame?: BaseFrames | FrameBase;
 
     public constructor(name: string, args?: FramePopupMenuArgs) {
         super(name);
@@ -35,12 +35,12 @@ export class FramePopupMenu extends FrameBase {
 
         this.writeCommonData(str);
 
-        if (this.popupButtonInset) str.writeIndentation().writeString(`PopupButtonInset ${this.popupButtonInset},\n`);
-        this.writeFrame(str, this.controlBackdrop, "ControlBackdrop");
-        this.writeFrame(str, this.controlDisabledBackdrop, "ControlDisabledBackdrop");
-        this.writeFrame(str, this.popupTitleFrame, "PopupTitleFrame");
-        this.writeFrame(str, this.popupArrowFrame, "PopupArrowFrame");
-        this.writeFrame(str, this.popupMenuFrame, "PopupMenuFrame");
+        if (this.PopupButtonInset) str.writeIndentation().writeString(`PopupButtonInset ${this.PopupButtonInset},\n`);
+        this.writeFrame(str, this.ControlBackdrop, "ControlBackdrop");
+        this.writeFrame(str, this.ControlDisabledBackdrop, "ControlDisabledBackdrop");
+        this.writeFrame(str, this.PopupTitleFrame, "PopupTitleFrame");
+        this.writeFrame(str, this.PopupArrowFrame, "PopupArrowFrame");
+        this.writeFrame(str, this.PopupMenuFrame, "PopupMenuFrame");
 
         this.printChildren(str);
 
