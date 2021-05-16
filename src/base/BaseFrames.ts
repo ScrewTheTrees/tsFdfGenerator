@@ -6,4 +6,5 @@ export const enum BaseFrames {
     EscMenuButtonTextTemplate = "EscMenuButtonTextTemplate",
     EscMenuTitleTextTemplate = "EscMenuTitleTextTemplate",
     EscMenuLabelTextSmallTemplate = "EscMenuLabelTextSmallTemplate",
+    EscMenuCheckBoxTemplate = "EscMenuCheckBoxTemplate",
 }

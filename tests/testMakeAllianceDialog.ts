@@ -9,6 +9,7 @@ import {BaseFrames} from "../src/base/BaseFrames";
 import {PointAlign, SetPoint} from "../src/fdf/SetPoint";
 import {FontJustify} from "../src/fdf/FontJustify";
 import {FrameGlueTextButton} from "../src/fdf/FrameGlueTextButton";
+import {FrameGlueCheckbox} from "../src/fdf/FrameGlueCheckbox";
 
 export function testMakeAllianceDialog() {
     let allianceBackdrop = new FrameBackdrop("AllianceBackdropCustom", {
@@ -114,7 +115,7 @@ export function testMakeAllianceDialog() {
         buttonText: "AllianceAcceptButtonText",
         children: [
             new FrameText("AllianceAcceptButtonTextCustom", {
-               inheritsFrom: BaseFrames.EscMenuButtonTextTemplate,
+                inheritsFrom: BaseFrames.EscMenuButtonTextTemplate,
                 text: "ACCEPT",
             }),
         ]
@@ -129,14 +130,31 @@ export function testMakeAllianceDialog() {
         buttonText: "AllianceCancelButtonText",
         children: [
             new FrameText("AllianceCancelButtonTextCustom", {
-               inheritsFrom: BaseFrames.EscMenuButtonTextTemplate,
+                inheritsFrom: BaseFrames.EscMenuButtonTextTemplate,
                 text: "CANCEL",
             }),
         ]
     });
+    let alliedVictoryCheckBox = new FrameGlueCheckbox("AlliedVictoryCheckBoxCustom", {
+        inheritsFrom: BaseFrames.EscMenuCheckBoxTemplate,
+        inheritsWithChildren: true,
+        width: 0.024,
+        height: 0.024,
+        points: [
+            new SetPoint(PointAlign.BOTTOM, allianceDialog, PointAlign.BOTTOM, -0.056875, 0.06875),
+        ],
+    });
+    let alliedVictoryLabel = new FrameText("AlliedVictoryLabelCustom", {
+        points: [
+            new SetPoint(PointAlign.LEFT, alliedVictoryCheckBox, PointAlign.RIGHT, 0.01, 0.0),
+        ],
+        text: "ALLIED_VICTORY",
+    });
 
     allianceDialog.addChild(allianceAcceptButton);
     allianceDialog.addChild(allianceCancelButton);
+    allianceDialog.addChild(alliedVictoryCheckBox);
+    allianceDialog.addChild(alliedVictoryLabel);
 
     return allianceDialog;
 }

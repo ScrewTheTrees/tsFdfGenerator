@@ -3,30 +3,26 @@ import {FrameBase, FrameBaseArgs} from "./FrameBase";
 import {SetPoint} from "./SetPoint";
 
 
-export type FrameGlueTextButtonArgs = FrameBaseArgs & {
+export type FrameGlueCheckboxArgs = FrameBaseArgs & {
     points?: SetPoint[],
-    buttonText?: string,
 };
 
-export class FrameGlueTextButton extends FrameBase {
+export class FrameGlueCheckbox extends FrameBase {
     public points: SetPoint[] = [];
-    public buttonText: string = "";
 
-    public constructor(name: string, args?: FrameGlueTextButtonArgs) {
+    public constructor(name: string, args?: FrameGlueCheckboxArgs) {
         super(name);
         Object.assign(this, args);
     }
 
     writeToString(str: StringStream): void {
-        this.writeBaseHeader(str, "GLUETEXTBUTTON");
+        this.writeBaseHeader(str, "GLUECHECKBOX");
         str.pushIndent();
 
         this.writeCommonData(str);
         for (let point of this.points) {
             point.writeToString(str);
         }
-
-        str.writeIndentation().writeString(`ButtonText "${this.buttonText}",\n`)
 
         this.printChildren(str);
 

@@ -7,7 +7,8 @@ const fs = require('fs');
 let allianceDialog = testMakeAllianceDialog();
 
 const root = new Root({
-    children: [allianceDialog]
+    children: [allianceDialog],
+    includeFiles: ["UI\\FrameDef\\UI\\EscMenuTemplates.fdf"],
 });
 
 
