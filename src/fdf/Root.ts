@@ -1,4 +1,4 @@
-import {IWriteAble} from "../IWriteAble";
+
 import {StringStream} from "../StringStream";
 import {FrameBase} from "./FrameBase";
 
@@ -8,7 +8,7 @@ export type RootArgs = {
     includeFiles?: string[]
 };
 
-export class Root implements IWriteAble {
+export class Root{
     public children: FrameBase[] = [];
     public includeFiles: string[] = [];
 
@@ -20,7 +20,8 @@ export class Root implements IWriteAble {
         this.children.push(frame);
     }
 
-    writeToString(str: StringStream): void {
+    compileFile(): StringStream {
+        const str: StringStream = new StringStream();
         if (this.includeFiles.length > 0) {
             str.writeString("//--Includes--\n");
             for (let file of this.includeFiles) {
@@ -35,5 +36,6 @@ export class Root implements IWriteAble {
             }
         }
         str.writeString("\n");
+        return str;
     }
 }
