@@ -1,0 +1,21 @@
+{
+  "name": "luadestroyer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "run": "ts-node index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^15.3.0",
+    "fs-extra": "^10.0.0",
+    "ts-node": "^9.1.1"
+  },
+  "files": [
+    "BaseList.ts",
+    "LuaDestroyer.ts"
+  ]
+}

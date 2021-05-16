@@ -1,0 +1,15 @@
+Frame "DIALOG" "AllianceDialogCustom" {
+    DecorateFileNames,
+    Width 0.48,
+    Height 0.576,
+
+    DialogBackdrop "AllianceBackdropCustom",
+    Frame "BACKDROP" "AllianceBackdropCustom" {
+        DecorateFileNames,
+        BackdropBackground EscMenuBackground,
+        BackdropBackgroundSize 0.128,
+        BackdropBackgroundSize 0.01 0.01 0.01 0.01,
+        BackdropEdgeFile EscMenuBorder,
+    }
+}
+
