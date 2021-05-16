@@ -1,5 +1,6 @@
 import {IWriteAble} from "../IWriteAble";
 import {StringStream} from "../StringStream";
+import {SetPoint} from "./SetPoint";
 
 export type FrameBaseArgs = {
     width?: number,
@@ -9,6 +10,8 @@ export type FrameBaseArgs = {
     decorateFileName?: boolean,
 
     children?: FrameBase[]
+    points?: SetPoint[]
+
 };
 
 export abstract class FrameBase implements IWriteAble {
@@ -21,7 +24,9 @@ export abstract class FrameBase implements IWriteAble {
     //Flags
     public decorateFileName: boolean = false;
 
+    public points: SetPoint[] = [];
     public children: FrameBase[] = [];
+
     public addChild(frame: FrameBase) {
         this.children.push(frame);
     }
@@ -45,6 +50,9 @@ export abstract class FrameBase implements IWriteAble {
         if (this.decorateFileName) str.writeIndentation().writeString(`DecorateFileNames,\n`);
         if (this.width != null) str.writeIndentation().writeString(`Width ${this.width},\n`);
         if (this.height != null) str.writeIndentation().writeString(`Height ${this.height},\n`);
+        for (let point of this.points) {
+            point.writeToString(str);
+        }
     }
     private writeInheritsFrom(str: StringStream) {
         if (this.inheritsFrom != null) {

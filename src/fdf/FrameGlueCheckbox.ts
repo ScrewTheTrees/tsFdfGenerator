@@ -1,15 +1,10 @@
 import {StringStream} from "../StringStream";
 import {FrameBase, FrameBaseArgs} from "./FrameBase";
-import {SetPoint} from "./SetPoint";
 
 
-export type FrameGlueCheckboxArgs = FrameBaseArgs & {
-    points?: SetPoint[],
-};
+export type FrameGlueCheckboxArgs = FrameBaseArgs & {};
 
 export class FrameGlueCheckbox extends FrameBase {
-    public points: SetPoint[] = [];
-
     public constructor(name: string, args?: FrameGlueCheckboxArgs) {
         super(name);
         Object.assign(this, args);
@@ -20,9 +15,6 @@ export class FrameGlueCheckbox extends FrameBase {
         str.pushIndent();
 
         this.writeCommonData(str);
-        for (let point of this.points) {
-            point.writeToString(str);
-        }
 
         this.printChildren(str);
 

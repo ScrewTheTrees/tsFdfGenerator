@@ -26,9 +26,6 @@ export class FrameText extends FrameBase {
         str.pushIndent();
 
         this.writeCommonData(str);
-        for (let point of this.points) {
-            point.writeToString(str);
-        }
 
         if (this.fontJustificationH) str.writeIndentation().writeString(`FontJustificationH ${this.fontJustificationH},\n`)
         if (this.fontJustificationV) str.writeIndentation().writeString(`FontJustificationV ${this.fontJustificationV},\n`)
