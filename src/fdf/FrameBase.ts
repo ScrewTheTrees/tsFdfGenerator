@@ -24,7 +24,7 @@ export abstract class FrameBase implements IWriteAble {
         this.children.push(frame);
     }
 
-    public constructor(name: string, args: FrameBaseArgs | undefined) {
+    public constructor(name: string, args?: FrameBaseArgs) {
         this.name = name;
         if (args) Object.assign(this, args);
     }
@@ -35,18 +35,13 @@ export abstract class FrameBase implements IWriteAble {
         str.writeString(` {\n`);
     }
     public writeCommonData(str: StringStream) {
-        if (this.decorateFileName != null) str.writeIndentation().writeString(`DecorateFileNames,\n`);
+        if (this.decorateFileName) str.writeIndentation().writeString(`DecorateFileNames,\n`);
         if (this.width != null) str.writeIndentation().writeString(`Width ${this.width},\n`);
         if (this.height != null) str.writeIndentation().writeString(`Height ${this.height},\n`);
     }
     private writeInheritsFrom(str: StringStream) {
         if (this.inheritsFrom != null) {
-            str.writeString(` INHERITS `)
-            if (typeof this.inheritsFrom == "string") {
-                str.writeString(this.inheritsFrom);
-            } else {
-                str.writeString(this.inheritsFrom.name);
-            }
+            str.writeString(` INHERITS "${typeof this.inheritsFrom == "string" ? this.inheritsFrom : this.inheritsFrom.name}", `);
         }
     }
     public abstract writeToString(str: StringStream): void;

@@ -3,4 +3,5 @@ export const enum BaseFrames {
     AllianceBackdrop = "AllianceBackdrop",
     AllianceTitle = "AllianceTitle",
     EscMenuTitleTextTemplate = "EscMenuTitleTextTemplate",
+    EscMenuLabelTextSmallTemplate = "EscMenuLabelTextSmallTemplate",
 }

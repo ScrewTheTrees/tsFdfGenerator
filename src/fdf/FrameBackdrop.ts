@@ -30,7 +30,8 @@ export class FrameBackdrop extends FrameBase {
     public backdropBlendAll: boolean = false;
 
     public constructor(name: string, args?: FrameBackdropTypes) {
-        super(name, args);
+        super(name);
+        Object.assign(this, args);
     }
 
     writeToString(str: StringStream): void {
@@ -48,7 +49,6 @@ export class FrameBackdrop extends FrameBase {
         if (this.backdropBackgroundInsets) str.writeIndentation().writeString(`BackdropBackgroundSize ${this.backdropBackgroundInsets.toString()},\n`);
         if (this.backdropEdgeFile) str.writeIndentation().writeString(`BackdropEdgeFile ${this.backdropEdgeFile},\n`);
 
-
         str.popIndent();
         str.writeIndentation().writeString("}\n");
     }
@@ -61,7 +61,7 @@ export class FrameBackdrop extends FrameBase {
                 str.writeString(entry)
                 first = false;
             }
-            str.writeIndentation().writeString(",\n");
+            str.writeString(",\n");
         }
     }
 }

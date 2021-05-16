@@ -9,13 +9,15 @@ export const enum CornerFlags {
     RIGHT = "R",
 }
 
-export const CornerFlagsAll = [
-    CornerFlags.TOP_LEFT,
-    CornerFlags.TOP_RIGHT,
-    CornerFlags.BOTTOM_LEFT,
-    CornerFlags.BOTTOM_RIGHT,
-    CornerFlags.TOP,
-    CornerFlags.LEFT,
-    CornerFlags.BOTTOM,
-    CornerFlags.RIGHT,
-];
+export function CornerFlagsAll() {
+    return new Set([
+        CornerFlags.TOP_LEFT,
+        CornerFlags.TOP_RIGHT,
+        CornerFlags.BOTTOM_LEFT,
+        CornerFlags.BOTTOM_RIGHT,
+        CornerFlags.TOP,
+        CornerFlags.LEFT,
+        CornerFlags.BOTTOM,
+        CornerFlags.RIGHT,
+    ]);
+}

@@ -31,10 +31,8 @@ export class SetPoint implements IWriteAble {
     writeToString(str: StringStream): void {
         str.writeIndentation()
             .writeString(`SetPoint ${this.myPoint}, `);
-        if (typeof this.parentFrame == "string") {
-            str.writeString(this.parentFrame);
-        } else str.writeString(this.parentFrame.name);
-        str.writeString(", ");
+
+        str.writeString(`"${typeof this.parentFrame == "string" ? this.parentFrame : this.parentFrame.name}", `);
         str.writeString(`${this.parentPoint}, ${this.xOffset}, ${this.yOffset}, \n`);
     }
 

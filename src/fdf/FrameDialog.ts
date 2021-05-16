@@ -12,7 +12,8 @@ export class FrameDialog extends FrameBase {
     public dialogBackdrop?: FrameBackdrop | BaseFrames;
 
     public constructor(name: string, args?: FrameDialogArgs) {
-        super(name, args);
+        super(name);
+        Object.assign(this, args);
     }
 
     writeToString(str: StringStream): void {
@@ -20,7 +21,6 @@ export class FrameDialog extends FrameBase {
         str.pushIndent();
 
         this.writeCommonData(str);
-        str.writeString(`\n`)
         this.writeDialogBackdrop(str);
 
         for (let child of this.children) {

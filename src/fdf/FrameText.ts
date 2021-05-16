@@ -25,7 +25,8 @@ export class FrameText extends FrameBase {
     public text: string = "";
 
     public constructor(name: string, args?: FrameDialogArgs) {
-        super(name, args);
+        super(name);
+        Object.assign(this, args);
     }
 
     writeToString(str: StringStream): void {
@@ -33,7 +34,6 @@ export class FrameText extends FrameBase {
         str.pushIndent();
 
         this.writeCommonData(str);
-        str.writeString(`\n`)
         for (let point of this.points) {
             point.writeToString(str);
         }
