@@ -5,6 +5,7 @@ export type FrameBaseArgs = {
     width?: number,
     height?: number,
     inheritsFrom?: FrameBase | string,
+    inheritsWithChildren?: boolean,
     decorateFileName?: boolean,
 
     children?: FrameBase[]
@@ -15,6 +16,7 @@ export abstract class FrameBase implements IWriteAble {
     public width?: number;
     public height?: number;
     public inheritsFrom?: FrameBase | string;
+    public inheritsWithChildren?: boolean = false;
 
     //Flags
     public decorateFileName: boolean = false;
@@ -22,6 +24,11 @@ export abstract class FrameBase implements IWriteAble {
     public children: FrameBase[] = [];
     public addChild(frame: FrameBase) {
         this.children.push(frame);
+    }
+    public printChildren(str: StringStream) {
+        for (let child of this.children) {
+            child.writeToString(str);
+        }
     }
 
     public constructor(name: string, args?: FrameBaseArgs) {
@@ -41,7 +48,9 @@ export abstract class FrameBase implements IWriteAble {
     }
     private writeInheritsFrom(str: StringStream) {
         if (this.inheritsFrom != null) {
-            str.writeString(` INHERITS "${typeof this.inheritsFrom == "string" ? this.inheritsFrom : this.inheritsFrom.name}", `);
+            str.writeString(` INHERITS`);
+            if (this.inheritsWithChildren) str.writeString(` WITHCHILDREN`);
+            str.writeString(` "${typeof this.inheritsFrom == "string" ? this.inheritsFrom : this.inheritsFrom.name}"`);
         }
     }
     public abstract writeToString(str: StringStream): void;

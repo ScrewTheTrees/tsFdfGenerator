@@ -4,9 +4,11 @@ import {BaseBorders} from "../src/base/BaseBorders";
 import {Vector4} from "../src/other/Vector4";
 import {CornerFlagsAll} from "../src/base/CornerFlags";
 import {FrameDialog} from "../src/fdf/FrameDialog";
-import {FontJustify, FrameText} from "../src/fdf/FrameText";
+import {FrameText} from "../src/fdf/FrameText";
 import {BaseFrames} from "../src/base/BaseFrames";
 import {PointAlign, SetPoint} from "../src/fdf/SetPoint";
+import {FontJustify} from "../src/fdf/FontJustify";
+import {FrameGlueTextButton} from "../src/fdf/FrameGlueTextButton";
 
 export function testMakeAllianceDialog() {
     let allianceBackdrop = new FrameBackdrop("AllianceBackdropCustom", {
@@ -102,8 +104,39 @@ export function testMakeAllianceDialog() {
     allianceDialog.addChild(goldHeaderCustom);
     allianceDialog.addChild(lumberHeaderCustom);
 
+    let allianceAcceptButton = new FrameGlueTextButton("AllianceAcceptButtonCustom", {
+        inheritsFrom: BaseFrames.EscMenuButtonTemplate,
+        inheritsWithChildren: true,
+        width: 0.13,
+        points: [
+            new SetPoint(PointAlign.BOTTOMRIGHT, allianceDialog, PointAlign.BOTTOM, -0.003, 0.03),
+        ],
+        buttonText: "AllianceAcceptButtonText",
+        children: [
+            new FrameText("AllianceAcceptButtonTextCustom", {
+               inheritsFrom: BaseFrames.EscMenuButtonTextTemplate,
+                text: "ACCEPT",
+            }),
+        ]
+    });
+    let allianceCancelButton = new FrameGlueTextButton("AllianceCancelButtonCustom", {
+        inheritsFrom: BaseFrames.EscMenuButtonTemplate,
+        inheritsWithChildren: true,
+        width: 0.13,
+        points: [
+            new SetPoint(PointAlign.LEFT, allianceAcceptButton, PointAlign.RIGHT, 0.005, 0.0),
+        ],
+        buttonText: "AllianceCancelButtonText",
+        children: [
+            new FrameText("AllianceCancelButtonTextCustom", {
+               inheritsFrom: BaseFrames.EscMenuButtonTextTemplate,
+                text: "CANCEL",
+            }),
+        ]
+    });
 
-
+    allianceDialog.addChild(allianceAcceptButton);
+    allianceDialog.addChild(allianceCancelButton);
 
     return allianceDialog;
 }

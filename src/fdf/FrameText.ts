@@ -1,6 +1,7 @@
 import {StringStream} from "../StringStream";
 import {FrameBase, FrameBaseArgs} from "./FrameBase";
 import {SetPoint} from "./SetPoint";
+import {FontJustify} from "./FontJustify";
 
 
 export type FrameDialogArgs = FrameBaseArgs & {
@@ -9,15 +10,6 @@ export type FrameDialogArgs = FrameBaseArgs & {
     fontJustificationV?: FontJustify,
     text?: string,
 };
-
-export const enum FontJustify {
-    JUSTIFYLEFT = "JUSTIFYLEFT",
-    JUSTIFYCENTER = "JUSTIFYCENTER",
-    JUSTIFYRIGHT = "JUSTIFYRIGHT",
-    JUSTIFYTOP = "JUSTIFYTOP",
-    JUSTIFYBOTTOM = "JUSTIFYBOTTOM",
-}
-
 export class FrameText extends FrameBase {
     public points: SetPoint[] = [];
     public fontJustificationH?: FontJustify;
@@ -42,9 +34,7 @@ export class FrameText extends FrameBase {
         if (this.fontJustificationV) str.writeIndentation().writeString(`FontJustificationV ${this.fontJustificationV},\n`)
         str.writeIndentation().writeString(`Text "${this.text}",\n`)
 
-        for (let child of this.children) {
-            child.writeToString(str);
-        }
+        this.printChildren(str);
 
         str.popIndent();
         str.writeIndentation().writeString(`}\n`)

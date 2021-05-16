@@ -23,9 +23,7 @@ export class FrameDialog extends FrameBase {
         this.writeCommonData(str);
         this.writeDialogBackdrop(str);
 
-        for (let child of this.children) {
-            child.writeToString(str);
-        }
+        this.printChildren(str);
 
         str.popIndent();
         str.writeIndentation().writeString(`}\n`)

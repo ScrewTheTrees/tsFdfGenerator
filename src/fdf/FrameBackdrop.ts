@@ -49,6 +49,8 @@ export class FrameBackdrop extends FrameBase {
         if (this.backdropBackgroundInsets) str.writeIndentation().writeString(`BackdropBackgroundSize ${this.backdropBackgroundInsets.toString()},\n`);
         if (this.backdropEdgeFile) str.writeIndentation().writeString(`BackdropEdgeFile ${this.backdropEdgeFile},\n`);
 
+        this.printChildren(str);
+
         str.popIndent();
         str.writeIndentation().writeString("}\n");
     }
