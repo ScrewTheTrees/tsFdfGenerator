@@ -9,23 +9,24 @@ export type FrameBaseArgs = {
     inheritsWithChildren?: boolean,
     decorateFileName?: boolean,
 
-    children?: FrameBase[]
-    points?: SetPoint[]
-
+    children?: FrameBase[],
+    points?: SetPoint[],
+    setAllPoints?: boolean,
 };
 
 export abstract class FrameBase implements IWriteAble {
-    public name;
+    public name; //All frames need a name, preferably it should be entirely unique.
     public width?: number;
     public height?: number;
-    public inheritsFrom?: FrameBase | string;
-    public inheritsWithChildren?: boolean = false;
+    public inheritsFrom?: FrameBase | string; //Makes this frame inherit from another frame.
+    public inheritsWithChildren?: boolean = false; //adds the "WITHCHILDREN" to inherit children too.
 
     //Flags
-    public decorateFileName: boolean = false;
+    public decorateFileName: boolean = false; //This causes it to fetch files based on an alias.
+    public setAllPoints: boolean = false; //Sets all the points to its parent frame.
 
-    public points: SetPoint[] = [];
-    public children: FrameBase[] = [];
+    public points: SetPoint[] = []; //Used to align what this frame "sticks" to.
+    public children: FrameBase[] = []; //Children of this frame.
 
     public addChild(frame: FrameBase) {
         this.children.push(frame);
@@ -48,8 +49,10 @@ export abstract class FrameBase implements IWriteAble {
     }
     public writeCommonData(str: StringStream) {
         if (this.decorateFileName) str.writeIndentation().writeString(`DecorateFileNames,\n`);
+        if (this.setAllPoints) str.writeIndentation().writeString(`SetAllPoints,\n`);
         if (this.width != null) str.writeIndentation().writeString(`Width ${this.width},\n`);
         if (this.height != null) str.writeIndentation().writeString(`Height ${this.height},\n`);
+
         for (let point of this.points) {
             point.writeToString(str);
         }

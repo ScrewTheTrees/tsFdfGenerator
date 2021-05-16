@@ -1,4 +1,4 @@
-export class Vector4{
+export class Vector4 {
     public x: number = 0;
     public y: number = 0;
     public z: number = 0;
@@ -14,3 +14,5 @@ export class Vector4{
         return `${this.x} ${this.y} ${this.z} ${this.w}`;
     }
 }
+
+

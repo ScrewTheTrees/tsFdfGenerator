@@ -1,13 +1,15 @@
 import {Root} from "./src/fdf/Root";
 import {StringStream} from "./src/StringStream";
 import {testMakeAllianceDialog} from "./tests/testMakeAllianceDialog";
+import {testMakeChatDialog} from "./tests/testMakeChatDialog";
 
 const fs = require('fs');
 
 let allianceDialog = testMakeAllianceDialog();
+let chatDialog = testMakeChatDialog();
 
 const root = new Root({
-    children: [allianceDialog],
+    children: [chatDialog, allianceDialog],
     includeFiles: ["UI\\FrameDef\\UI\\EscMenuTemplates.fdf"],
 });
 
