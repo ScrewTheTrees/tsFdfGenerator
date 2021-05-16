@@ -1,7 +1,7 @@
-import {IWriteAble} from "../IWriteAble";
-import {StringStream} from "../StringStream";
-import {FrameBase} from "./FrameBase";
-import {BaseFrames} from "../base/BaseFrames";
+import {IWriteAble} from "../../IWriteAble";
+import {StringStream} from "../../StringStream";
+import {FrameBase} from "../FrameBase";
+import {BaseFrames} from "../../base/BaseFrames";
 
 export const enum PointAlign {
     TOPLEFT = "TOPLEFT",

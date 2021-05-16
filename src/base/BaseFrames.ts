@@ -5,11 +5,20 @@ export const enum BaseFrames {
 
     EscMenuButtonTemplate = "EscMenuButtonTemplate",
     EscMenuButtonTextTemplate = "EscMenuButtonTextTemplate",
+    EscMenuButtonBackdropTemplate = "EscMenuButtonBackdropTemplate",
+    EscMenuButtonDisabledBackdropTemplate = "EscMenuButtonDisabledBackdropTemplate",
+    EscMenuRadioButtonTemplate = "EscMenuRadioButtonTemplate",
+
+    EscMenuPopupMenuTitleTemplate = "EscMenuPopupMenuTitleTemplate",
+    EscMenuPopupMenuArrowTemplate = "EscMenuPopupMenuArrowTemplate",
+    EscMenuPopupMenuMenuTemplate = "EscMenuPopupMenuMenuTemplate",
+
     EscMenuTitleTextTemplate = "EscMenuTitleTextTemplate",
     EscMenuInfoTextTemplate = "EscMenuInfoTextTemplate",
     EscMenuLabelTextSmallTemplate = "EscMenuLabelTextSmallTemplate",
+
     EscMenuCheckBoxTemplate = "EscMenuCheckBoxTemplate",
-    EscMenuRadioButtonTemplate = "EscMenuRadioButtonTemplate",
+
 
     StandardScrollBarTemplate = "StandardScrollBarTemplate",
 }

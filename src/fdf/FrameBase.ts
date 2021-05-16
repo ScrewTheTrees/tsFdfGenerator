@@ -1,17 +1,18 @@
 import {IWriteAble} from "../IWriteAble";
 import {StringStream} from "../StringStream";
-import {SetPoint} from "./SetPoint";
+import {SetPoint} from "./subtypes/SetPoint";
+import {BaseFrames} from "../base/BaseFrames";
 
 export type FrameBaseArgs = {
     width?: number,
     height?: number,
     inheritsFrom?: FrameBase | string,
-    inheritsWithChildren?: boolean,
-    decorateFileName?: boolean,
-
     children?: FrameBase[],
     points?: SetPoint[],
+
     setAllPoints?: boolean,
+    inheritsWithChildren?: boolean,
+    decorateFileName?: boolean,
 };
 
 export abstract class FrameBase implements IWriteAble {
@@ -22,7 +23,7 @@ export abstract class FrameBase implements IWriteAble {
     public inheritsWithChildren?: boolean = false; //adds the "WITHCHILDREN" to inherit children too.
 
     //Flags
-    public decorateFileName: boolean = false; //This causes it to fetch files based on an alias.
+    public decorateFileName: boolean = false; //Inside this Frame Filenames are lookups in a string table like GameInterface etc.
     public setAllPoints: boolean = false; //Sets all the points to its parent frame.
 
     public points: SetPoint[] = []; //Used to align what this frame "sticks" to.
@@ -57,6 +58,14 @@ export abstract class FrameBase implements IWriteAble {
             point.writeToString(str);
         }
     }
+
+    public writeFrame(str: StringStream, frame: FrameBase | BaseFrames | undefined, header: string) {
+        if (frame != null) {
+            str.writeIndentation();
+            str.writeString(`${header} "${typeof frame == "string" ? frame : frame.name}",\n`);
+        }
+    }
+
     private writeInheritsFrom(str: StringStream) {
         if (this.inheritsFrom != null) {
             str.writeString(` INHERITS`);

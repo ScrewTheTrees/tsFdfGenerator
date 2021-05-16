@@ -3,7 +3,10 @@ import {StringStream} from "../StringStream";
 import {FrameBase} from "./FrameBase";
 
 
-export type RootArgs = { children?: FrameBase[], includeFiles?: string[] };
+export type RootArgs = {
+    children?: FrameBase[],
+    includeFiles?: string[]
+};
 
 export class Root implements IWriteAble {
     public children: FrameBase[] = [];

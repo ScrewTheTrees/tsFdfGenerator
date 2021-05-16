@@ -21,22 +21,11 @@ export class FrameDialog extends FrameBase {
         str.pushIndent();
 
         this.writeCommonData(str);
-        this.writeDialogBackdrop(str);
+        this.writeFrame(str, this.dialogBackdrop, "DialogBackdrop");
 
         this.printChildren(str);
 
         str.popIndent();
         str.writeIndentation().writeString(`}\n`)
-    }
-
-
-    private writeDialogBackdrop(str: StringStream) {
-        if (this.dialogBackdrop != undefined) {
-            if (typeof this.dialogBackdrop == "string") {
-                str.writeIndentation().writeString(`DialogBackdrop "${this.dialogBackdrop}",\n`)
-            } else {
-                str.writeIndentation().writeString(`DialogBackdrop "${this.dialogBackdrop.name}",\n`)
-            }
-        }
     }
 }

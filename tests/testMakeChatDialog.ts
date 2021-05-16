@@ -5,11 +5,15 @@ import {CornerFlagsAll} from "../src/base/CornerFlags";
 import {Vector4} from "../src/other/Vector4";
 import {BaseBorders} from "../src/base/BaseBorders";
 import {FrameText} from "../src/fdf/FrameText";
-import {PointAlign, SetPoint} from "../src/fdf/SetPoint";
-import {FontJustify} from "../src/fdf/FontJustify";
+import {PointAlign, SetPoint} from "../src/fdf/subtypes/SetPoint";
+import {FontJustify} from "../src/fdf/subtypes/FontJustify";
 import {BaseFrames} from "../src/base/BaseFrames";
 import {FrameGlueCheckbox} from "../src/fdf/FrameGlueCheckbox";
 import {Color} from "../src/other/Color";
+import {FramePopupMenu} from "../src/fdf/FramePopupMenu";
+import {FrameGlueTextButton} from "../src/fdf/FrameGlueTextButton";
+import {FrameButton} from "../src/fdf/FrameButton";
+import {FrameMenu} from "../src/fdf/FrameMenu";
 
 export function testMakeChatDialog() {
     let chatDialog = new FrameFrame("ChatDialog", {
@@ -77,7 +81,6 @@ export function testMakeChatDialog() {
         text: "SEND_TO_EVERYONE",
     });
 
-
     chatDialog.addChild(chatTitle);
     chatDialog.addChild(chatPlayerRadioButton);
     chatDialog.addChild(chatAlliesRadioButton);
@@ -87,6 +90,47 @@ export function testMakeChatDialog() {
     chatDialog.addChild(chatAlliesLabel);
     chatDialog.addChild(chatObserversLabel);
     chatDialog.addChild(chatEveryoneLabel);
+
+    let EscMenuPopupMenuBackdropTemplate = new FrameBackdrop("EscMenuPopupMenuBackdropTemplate", {
+        inheritsFrom: BaseFrames.EscMenuButtonBackdropTemplate,
+    });
+    let EscMenuPopupMenuDisabledBackdropTemplate = new FrameBackdrop("EscMenuPopupMenuDisabledBackdropTemplate", {
+        inheritsFrom: BaseFrames.EscMenuButtonDisabledBackdropTemplate,
+    });
+    let PopupMenuTitleTemplate = new FrameGlueTextButton("PopupMenuTitleTemplate", {
+        inheritsFrom: BaseFrames.EscMenuPopupMenuTitleTemplate,
+        inheritsWithChildren: true,
+    });
+    let PopupMenuArrowTemplate = new FrameButton("PopupMenuArrowTemplate", {
+        inheritsFrom: BaseFrames.EscMenuPopupMenuArrowTemplate,
+        inheritsWithChildren: true,
+    });
+    let PopupMenuMenuTemplate = new FrameMenu("PopupMenuMenuTemplate", {
+        inheritsFrom: BaseFrames.EscMenuPopupMenuMenuTemplate,
+        inheritsWithChildren: true,
+    });
+
+    let chatPlayerMenu = new FramePopupMenu("ChatPlayerMenu", {
+        width: 0.19625,
+        height: 0.03,
+        popupButtonInset: 0.01,
+        points: [new SetPoint(PointAlign.RIGHT, chatDialog, PointAlign.TOPRIGHT, -0.031, -0.0765)],
+        controlBackdrop: EscMenuPopupMenuBackdropTemplate,
+        controlDisabledBackdrop: EscMenuPopupMenuDisabledBackdropTemplate,
+        popupTitleFrame: PopupMenuTitleTemplate,
+        popupArrowFrame: PopupMenuArrowTemplate,
+        popupMenuFrame: PopupMenuMenuTemplate,
+
+        children: [
+            EscMenuPopupMenuBackdropTemplate,
+            EscMenuPopupMenuDisabledBackdropTemplate,
+            PopupMenuTitleTemplate,
+            PopupMenuArrowTemplate,
+            PopupMenuMenuTemplate,
+        ]
+    });
+
+    chatDialog.addChild(chatPlayerMenu);
 
     return chatDialog;
 }
