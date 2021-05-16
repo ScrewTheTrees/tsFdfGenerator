@@ -6,6 +6,8 @@ import {CornerFlags, CornerFlagsAll} from "./src/base/CornerFlags";
 import {Vector4} from "./src/other/Vector4";
 import {BaseBorders} from "./src/base/BaseBorders";
 import {StringStream} from "./src/StringStream";
+import {FontJustify, FrameText} from "./src/fdf/FrameText";
+import {PointAlign, SetPoint} from "./src/fdf/SetPoint";
 
 const fs = require('fs');
 
@@ -26,6 +28,16 @@ let allianceDialog = new FrameDialog("AllianceDialogCustom", {
     children: [allianceBackdrop],
     dialogBackdrop: allianceBackdrop,
 });
+let allianceTitle = new FrameText("AllianceTitleCustom", {
+    points: [
+        new SetPoint(PointAlign.TOPLEFT, allianceDialog, PointAlign.TOPLEFT, 0.03375, -0.03),
+    ],
+    fontJustificationH: FontJustify.JUSTIFYLEFT,
+    text: "ALLIANCES"
+});
+
+
+allianceDialog.addChild(allianceTitle);
 
 const root = new Root({
     children: [allianceDialog]
