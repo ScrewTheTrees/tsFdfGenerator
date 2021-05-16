@@ -21,4 +21,8 @@ export class StringStream {
         this.data += str;
         return this;
     }
+    public writeLine(str: string) {
+        this.data += str + "\n";
+        return this;
+    }
 }

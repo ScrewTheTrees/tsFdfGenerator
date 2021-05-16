@@ -2,7 +2,7 @@ import {FrameBackdrop} from "../src/fdf/FrameBackdrop";
 import {BaseBackgrounds} from "../src/base/BaseBackgrounds";
 import {BaseBorders} from "../src/base/BaseBorders";
 import {Vector4} from "../src/other/Vector4";
-import {CornerFlagsAll} from "../src/base/CornerFlags";
+import {CornerFlagsAll} from "../src/fdf/subtypes/CornerFlags";
 import {FrameDialog} from "../src/fdf/FrameDialog";
 import {FrameText} from "../src/fdf/FrameText";
 import {BaseFrames} from "../src/base/BaseFrames";

@@ -1,6 +1,8 @@
 import {BaseFonts} from "../../base/BaseFonts";
+import {IWriteAble} from "../../IWriteAble";
+import {StringStream} from "../../StringStream";
 
-export class FrameFont {
+export class FrameFont implements IWriteAble {
     public font: BaseFonts;
     public size: number;
     public unknown: string;
@@ -10,7 +12,7 @@ export class FrameFont {
         this.size = size;
         this.unknown = unknown;
     }
-    public toString() {
-        return `FrameFont ${this.font}, ${this.size}, ${this.unknown},\n`;
+    public writeToString(str: StringStream) {
+        str.writeIndentation().writeLine(`FrameFont "${this.font}", ${this.size}, "${this.unknown}",`);
     }
 }

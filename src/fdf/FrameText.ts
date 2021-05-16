@@ -11,7 +11,7 @@ export type FrameDialogArgs = FrameBaseArgs & {
     FrameFont?: FrameFont,
     FontJustificationH?: FontJustify,
     FontJustificationV?: FontJustify,
-    FontJustificationCenter?: Vector2,
+    FontJustificationOffset?: Vector2,
     FontFlags?: (string | 'FIXEDSIZE'),
     FontColor?: Color,
     FontHighlightColor?: Color,
@@ -21,11 +21,11 @@ export type FrameDialogArgs = FrameBaseArgs & {
 };
 
 export class FrameText extends FrameBase {
-    public Text: string = "";
+    public Text?: string;
     public FrameFont?: FrameFont;
     public FontJustificationH?: FontJustify; //How the text should expand/align.
     public FontJustificationV?: FontJustify; //Is this even real?
-    public FontJustificationCenter?: Vector2;
+    public FontJustificationOffset?: Vector2;
     public FontFlags?: (string | 'FIXEDSIZE');
     public FontColor?: Color; //RGBA
     public FontHighlightColor?: Color; //RGBA
@@ -49,12 +49,12 @@ export class FrameText extends FrameBase {
         if (this.FontDisabledColor) str.writeIndentation().writeString(`FontDisabledColor ${this.FontDisabledColor.toString()},\n`);
         if (this.FontShadowColor) str.writeIndentation().writeString(`FontShadowColor ${this.FontShadowColor.toString()},\n`);
         if (this.FontShadowOffset) str.writeIndentation().writeString(`FontShadowOffset ${this.FontShadowOffset.toString()},\n`);
-        if (this.FrameFont) str.writeIndentation().writeString(`FontColor ${this.FrameFont.toString()},\n`);
-        if (this.FontJustificationCenter) str.writeIndentation().writeString(`FontJustificationOffset ${this.FontJustificationCenter.toString()},\n`);
+        if (this.FrameFont) this.FrameFont.writeToString(str);
+        if (this.FontJustificationOffset) str.writeIndentation().writeString(`FontJustificationOffset ${this.FontJustificationOffset.toString()},\n`);
         if (this.FontJustificationH) str.writeIndentation().writeString(`FontJustificationH ${this.FontJustificationH},\n`);
         if (this.FontJustificationV) str.writeIndentation().writeString(`FontJustificationV ${this.FontJustificationV},\n`);
         if (this.FontFlags) str.writeIndentation().writeString(`FontFlags ${this.FontFlags},\n`);
-        str.writeIndentation().writeString(`Text "${this.Text}",\n`);
+        if (this.Text) str.writeIndentation().writeString(`Text "${this.Text}",\n`);
 
         this.printChildren(str);
 
