@@ -7,4 +7,5 @@ export const enum BaseFrames {
     EscMenuTitleTextTemplate = "EscMenuTitleTextTemplate",
     EscMenuLabelTextSmallTemplate = "EscMenuLabelTextSmallTemplate",
     EscMenuCheckBoxTemplate = "EscMenuCheckBoxTemplate",
+    StandardScrollBarTemplate = "StandardScrollBarTemplate",
 }

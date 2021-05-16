@@ -10,6 +10,7 @@ import {PointAlign, SetPoint} from "../src/fdf/SetPoint";
 import {FontJustify} from "../src/fdf/FontJustify";
 import {FrameGlueTextButton} from "../src/fdf/FrameGlueTextButton";
 import {FrameGlueCheckbox} from "../src/fdf/FrameGlueCheckbox";
+import {FrameScrollBar} from "../src/fdf/FrameScrollbar";
 
 export function testMakeAllianceDialog() {
     let allianceBackdrop = new FrameBackdrop("AllianceBackdropCustom", {
@@ -150,11 +151,16 @@ export function testMakeAllianceDialog() {
         ],
         text: "ALLIED_VICTORY",
     });
+    let allianceDialogScrollBar = new FrameScrollBar("AllianceDialogScrollBarCustom", {
+        inheritsFrom: BaseFrames.StandardScrollBarTemplate,
+        inheritsWithChildren: true,
+    });
 
     allianceDialog.addChild(allianceAcceptButton);
     allianceDialog.addChild(allianceCancelButton);
     allianceDialog.addChild(alliedVictoryCheckBox);
     allianceDialog.addChild(alliedVictoryLabel);
+    allianceDialog.addChild(allianceDialogScrollBar);
 
     return allianceDialog;
 }

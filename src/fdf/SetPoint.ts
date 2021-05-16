@@ -18,22 +18,22 @@ export class SetPoint implements IWriteAble {
     public myPoint: PointAlign;
     public parentFrame: FrameBase | BaseFrames;
     public parentPoint: PointAlign;
-    public xOffset: number;
-    public yOffset: number;
+    public xx: number;
+    public yy: number;
 
-    constructor(myPoint: PointAlign, parentFrame: FrameBase | BaseFrames, parentPoint: PointAlign, xOffset: number, yOffset: number) {
+    constructor(myPoint: PointAlign, parentFrame: FrameBase | BaseFrames, parentPoint: PointAlign, xx: number, yy: number) {
         this.myPoint = myPoint;
         this.parentFrame = parentFrame;
         this.parentPoint = parentPoint;
-        this.xOffset = xOffset;
-        this.yOffset = yOffset;
+        this.xx = xx;
+        this.yy = yy;
     }
     writeToString(str: StringStream): void {
         str.writeIndentation()
             .writeString(`SetPoint ${this.myPoint}, `);
 
         str.writeString(`"${typeof this.parentFrame == "string" ? this.parentFrame : this.parentFrame.name}", `);
-        str.writeString(`${this.parentPoint}, ${this.xOffset}, ${this.yOffset}, \n`);
+        str.writeString(`${this.parentPoint}, ${this.xx}, ${this.yy}, \n`);
     }
 
 }
