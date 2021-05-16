@@ -96,8 +96,8 @@ export abstract class FrameBase implements IWriteAble {
         if (this.FrameFont) this.FrameFont.writeToString(str);
         if (this.FontJustificationOffset) str.writeIndentation().writeString(`FontJustificationOffset ${this.FontJustificationOffset.toString()},\n`);
 
-        this.writeGeneric(str, this.FontJustificationH, "FontJustificationH");
-        this.writeGeneric(str, this.FontJustificationV, "FontJustificationV");
+        this.writeGeneric(str, this.FontJustificationH, "FontJustificationH", true);
+        this.writeGeneric(str, this.FontJustificationV, "FontJustificationV", true);
         this.writeGeneric(str, this.FontFlags, "FontFlags");
     }
 
@@ -107,10 +107,10 @@ export abstract class FrameBase implements IWriteAble {
             str.writeLine(`${header} "${typeof frame == "string" ? frame : frame.Name}",`);
         }
     }
-    public writeGeneric(str: StringStream, frame: string | number | undefined, header: string) {
+    public writeGeneric(str: StringStream, frame: string | number | undefined, header: string, noDoots: boolean = false) {
         if (frame != null) {
             str.writeIndentation();
-            if (typeof frame == "string") {
+            if (!noDoots && typeof frame == "string") {
                 str.writeLine(`${header} "${frame}",`);
             } else {
                 str.writeLine(`${header} ${frame},`);

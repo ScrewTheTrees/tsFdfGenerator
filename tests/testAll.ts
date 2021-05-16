@@ -17,6 +17,7 @@ import {FrameScrollbar} from "../src/fdf/FrameScrollbar";
 import {FrameMenu} from "../src/fdf/FrameMenu";
 import {RGBAColor} from "../src/other/RGBAColor";
 import {RGBColor} from "../src/other/RGBColor";
+import {FrameButton} from "../src/fdf/FrameButton";
 
 export function testAll() {
     const backdrop = new FrameBackdrop("BackdropTest", {
@@ -80,6 +81,9 @@ export function testAll() {
         MenuItemHeight: 0.014,
         MenuBorder: 0.009,
     });
+    const button = new FrameButton("TestButton", {
+        ControlBackdrop: backdrop,
+    });
 
     return [
         backdrop,
@@ -89,5 +93,6 @@ export function testAll() {
         frameSlider,
         frameScrollbar,
         menu,
+        button,
     ];
 }
