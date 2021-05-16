@@ -78,8 +78,8 @@ export abstract class FrameBase implements IWriteAble {
     public writeCommonData(str: StringStream) {
         if (this.DecorateFileNames) str.writeIndentation().writeLine(`DecorateFileNames,`);
         if (this.SetAllPoints) str.writeIndentation().writeLine(`SetAllPoints,`);
-        if (this.Width != null) str.writeIndentation().writeLine(`Width ${this.Width},`);
-        if (this.Height != null) str.writeIndentation().writeLine(`Height ${this.Height},`);
+        this.writeGeneric(str, this.Width, "Width");
+        this.writeGeneric(str, this.Height, "Height");
 
         for (let point of this.Points) {
             point.writeToString(str);
@@ -95,9 +95,10 @@ export abstract class FrameBase implements IWriteAble {
         if (this.FontShadowOffset) str.writeIndentation().writeString(`FontShadowOffset ${this.FontShadowOffset.toString()},\n`);
         if (this.FrameFont) this.FrameFont.writeToString(str);
         if (this.FontJustificationOffset) str.writeIndentation().writeString(`FontJustificationOffset ${this.FontJustificationOffset.toString()},\n`);
-        if (this.FontJustificationH) str.writeIndentation().writeString(`FontJustificationH ${this.FontJustificationH},\n`);
-        if (this.FontJustificationV) str.writeIndentation().writeString(`FontJustificationV ${this.FontJustificationV},\n`);
-        if (this.FontFlags) str.writeIndentation().writeString(`FontFlags ${this.FontFlags},\n`);
+
+        this.writeGeneric(str, this.FontJustificationH, "FontJustificationH");
+        this.writeGeneric(str, this.FontJustificationV, "FontJustificationV");
+        this.writeGeneric(str, this.FontFlags, "FontFlags");
     }
 
     public writeFrame(str: StringStream, frame: FrameType | undefined, header: string) {
@@ -109,7 +110,11 @@ export abstract class FrameBase implements IWriteAble {
     public writeGeneric(str: StringStream, frame: string | number | undefined, header: string) {
         if (frame != null) {
             str.writeIndentation();
-            str.writeLine(`${header} "${frame}",`);
+            if (typeof frame == "string") {
+                str.writeLine(`${header} "${frame}",`);
+            } else {
+                str.writeLine(`${header} ${frame},`);
+            }
         }
     }
     public writeSet<T extends string>(str: StringStream, set: Set<T>, header: string) {

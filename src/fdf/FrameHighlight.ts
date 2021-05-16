@@ -24,12 +24,11 @@ export class FrameHighlight extends FrameBase {
 
         this.writeCommonData(str);
 
-        if (this.HighlightType) str.writeIndentation().writeString(`HighlightType "${this.HighlightType}",\n`);
-        if (this.HighlightAlphaFile) str.writeIndentation().writeString(`HighlightAlphaFile "${this.HighlightAlphaFile}",\n`);
-        if (this.HighlightAlphaMode) str.writeIndentation().writeString(`HighlightAlphaMode "${this.HighlightAlphaMode}",\n`);
+        this.writeGeneric(str, this.HighlightType, "HighlightType");
+        this.writeGeneric(str, this.HighlightAlphaFile, "HighlightAlphaFile");
+        this.writeGeneric(str, this.HighlightAlphaMode, "HighlightAlphaMode");
 
         this.printChildren(str);
-
         str.popIndent();
         str.writeIndentation().writeString(`}\n`)
     }
