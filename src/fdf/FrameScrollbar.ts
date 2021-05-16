@@ -1,25 +1,16 @@
 import {StringStream} from "../StringStream";
-import {FrameBase, FrameBaseArgs} from "./FrameBase";
+import {FrameSlider} from "./FrameSlider";
 
-
-export type FrameGlueCheckboxArgs = FrameBaseArgs & {};
-
-export class FrameScrollBar extends FrameBase {
-    public constructor(name: string, args?: FrameGlueCheckboxArgs) {
-        super(name);
-        Object.assign(this, args);
-    }
-
+export class FrameScrollbar extends FrameSlider {
     writeToString(str: StringStream): void {
         this.writeBaseHeader(str, "SCROLLBAR");
         str.pushIndent();
-
         this.writeCommonData(str);
-
+        this.writeSlider(str);
+        this.writeControl(str);
 
         this.printChildren(str);
-
         str.popIndent();
-        str.writeIndentation().writeString(`}\n`)
+        str.writeIndentation().writeLine(`}`)
     }
 }

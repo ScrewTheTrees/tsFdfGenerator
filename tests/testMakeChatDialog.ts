@@ -9,11 +9,11 @@ import {PointAlign, SetPoint} from "../src/fdf/subtypes/SetPoint";
 import {FontJustify} from "../src/fdf/subtypes/FontJustify";
 import {BaseFrames} from "../src/base/BaseFrames";
 import {FrameGlueCheckbox} from "../src/fdf/FrameGlueCheckbox";
-import {Color} from "../src/other/Color";
 import {FramePopupMenu} from "../src/fdf/FramePopupMenu";
 import {FrameGlueTextButton} from "../src/fdf/FrameGlueTextButton";
 import {FrameButton} from "../src/fdf/FrameButton";
 import {FrameMenu} from "../src/fdf/FrameMenu";
+import {RGBAColor} from "../src/other/RGBAColor";
 
 export function testMakeChatDialog() {
     let chatDialog = new FrameFrame("ChatDialog", {
@@ -58,25 +58,25 @@ export function testMakeChatDialog() {
     });
     let chatPlayerLabel = new FrameText("ChatPlayerLabel", {
         InheritsFrom: BaseFrames.EscMenuInfoTextTemplate, InheritsWithChildren: true,
-        FontColor: new Color(0.99, 0.827, 0.0705, 1.0),
+        FontColor: new RGBAColor(0.99, 0.827, 0.0705, 1.0),
         Points: [new SetPoint(PointAlign.LEFT, chatPlayerRadioButton, PointAlign.RIGHT, 0.005, 0.0)],
         Text: "COLON_SEND_TO_PLAYER",
     });
     let chatAlliesLabel = new FrameText("ChatAlliesLabel", {
         InheritsFrom: BaseFrames.EscMenuInfoTextTemplate, InheritsWithChildren: true,
-        FontColor: new Color(0.99, 0.827, 0.0705, 1.0),
+        FontColor: new RGBAColor(0.99, 0.827, 0.0705, 1.0),
         Points: [new SetPoint(PointAlign.LEFT, chatPlayerRadioButton, PointAlign.RIGHT, 0.005, 0.0)],
         Text: "SEND_TO_ALLIES",
     });
     let chatObserversLabel = new FrameText("ChatObserversLabel", {
         InheritsFrom: BaseFrames.EscMenuInfoTextTemplate, InheritsWithChildren: true,
-        FontColor: new Color(0.99, 0.827, 0.0705, 1.0),
+        FontColor: new RGBAColor(0.99, 0.827, 0.0705, 1.0),
         Points: [new SetPoint(PointAlign.LEFT, chatObserversRadioButton, PointAlign.RIGHT, 0.005, 0.0)],
         Text: "SEND_TO_OBSERVERS",
     });
     let chatEveryoneLabel = new FrameText("ChatEveryoneLabel", {
         InheritsFrom: BaseFrames.EscMenuInfoTextTemplate, InheritsWithChildren: true,
-        FontColor: new Color(0.99, 0.827, 0.0705, 1.0),
+        FontColor: new RGBAColor(0.99, 0.827, 0.0705, 1.0),
         Points: [new SetPoint(PointAlign.LEFT, chatEveryoneRadioButton, PointAlign.RIGHT, 0.005, 0.0)],
         Text: "SEND_TO_EVERYONE",
     });

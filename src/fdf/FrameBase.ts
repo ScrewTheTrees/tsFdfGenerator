@@ -2,6 +2,10 @@ import {IWriteAble} from "../IWriteAble";
 import {StringStream} from "../StringStream";
 import {SetPoint} from "./subtypes/SetPoint";
 import {FrameType} from "./FrameTypes";
+import {FontJustify} from "./subtypes/FontJustify";
+import {Vector2} from "../other/Vector2";
+import {RGBColor} from "../other/RGBColor";
+import {FrameFont} from "./subtypes/FrameFont";
 
 export type FrameBaseArgs = {
     Width?: number,
@@ -14,6 +18,17 @@ export type FrameBaseArgs = {
 
     Children?: FrameBase[],
     Points?: SetPoint[],
+
+    FrameFont?: FrameFont,
+    FontJustificationH?: FontJustify,
+    FontJustificationV?: FontJustify,
+    FontJustificationOffset?: Vector2,
+    FontFlags?: (string | 'FIXEDSIZE'),
+    FontColor?: RGBColor,
+    FontHighlightColor?: RGBColor,
+    FontDisabledColor?: RGBColor,
+    FontShadowColor?: RGBColor,
+    FontShadowOffset?: Vector2,
 };
 
 export abstract class FrameBase implements IWriteAble {
@@ -29,6 +44,17 @@ export abstract class FrameBase implements IWriteAble {
 
     public Children: FrameBase[] = []; //Children of this frame.
     public Points: SetPoint[] = []; //Used to align what this frame "sticks" to.
+
+    public FrameFont?: FrameFont;
+    public FontJustificationH?: FontJustify; //How the text should expand/align.
+    public FontJustificationV?: FontJustify; //Is this even real?
+    public FontJustificationOffset?: Vector2;
+    public FontFlags?: (string | 'FIXEDSIZE');
+    public FontColor?: RGBColor; //RGBA
+    public FontHighlightColor?: RGBColor; //RGBA
+    public FontDisabledColor?: RGBColor; //RGBA
+    public FontShadowColor?: RGBColor; //RGBA
+    public FontShadowOffset?: Vector2;
 
     public addChild(frame: FrameBase) {
         this.Children.push(frame);
@@ -58,12 +84,32 @@ export abstract class FrameBase implements IWriteAble {
         for (let point of this.Points) {
             point.writeToString(str);
         }
+
+        this.writeFontData(str);
+    }
+    private writeFontData(str: StringStream) {
+        if (this.FontColor) str.writeIndentation().writeString(`FontColor ${this.FontColor.toString()},\n`);
+        if (this.FontHighlightColor) str.writeIndentation().writeString(`FontHighlightColor ${this.FontHighlightColor.toString()},\n`);
+        if (this.FontDisabledColor) str.writeIndentation().writeString(`FontDisabledColor ${this.FontDisabledColor.toString()},\n`);
+        if (this.FontShadowColor) str.writeIndentation().writeString(`FontShadowColor ${this.FontShadowColor.toString()},\n`);
+        if (this.FontShadowOffset) str.writeIndentation().writeString(`FontShadowOffset ${this.FontShadowOffset.toString()},\n`);
+        if (this.FrameFont) this.FrameFont.writeToString(str);
+        if (this.FontJustificationOffset) str.writeIndentation().writeString(`FontJustificationOffset ${this.FontJustificationOffset.toString()},\n`);
+        if (this.FontJustificationH) str.writeIndentation().writeString(`FontJustificationH ${this.FontJustificationH},\n`);
+        if (this.FontJustificationV) str.writeIndentation().writeString(`FontJustificationV ${this.FontJustificationV},\n`);
+        if (this.FontFlags) str.writeIndentation().writeString(`FontFlags ${this.FontFlags},\n`);
     }
 
     public writeFrame(str: StringStream, frame: FrameType | undefined, header: string) {
         if (frame != null) {
             str.writeIndentation();
             str.writeLine(`${header} "${typeof frame == "string" ? frame : frame.Name}",`);
+        }
+    }
+    public writeGeneric(str: StringStream, frame: string | number | undefined, header: string) {
+        if (frame != null) {
+            str.writeIndentation();
+            str.writeLine(`${header} "${frame}",`);
         }
     }
     public writeSet<T extends string>(str: StringStream, set: Set<T>, header: string) {

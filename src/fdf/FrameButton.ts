@@ -1,11 +1,10 @@
 import {StringStream} from "../StringStream";
-import {FrameBase, FrameBaseArgs} from "./FrameBase";
+import {FrameControlBase, FrameControlBaseArgs} from "./FrameControlBase";
 
 
-export type FrameButtonArgs = FrameBaseArgs & {
-};
+export type FrameButtonArgs = FrameControlBaseArgs & {};
 
-export class FrameButton extends FrameBase {
+export class FrameButton extends FrameControlBase {
     public constructor(name: string, args?: FrameButtonArgs) {
         super(name);
         Object.assign(this, args);
@@ -14,8 +13,8 @@ export class FrameButton extends FrameBase {
     writeToString(str: StringStream): void {
         this.writeBaseHeader(str, "BUTTON");
         str.pushIndent();
-
         this.writeCommonData(str);
+        this.writeControl(str);
 
         this.printChildren(str);
 
