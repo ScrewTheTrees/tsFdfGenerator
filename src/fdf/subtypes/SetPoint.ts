@@ -2,26 +2,16 @@ import {IWriteAble} from "../../IWriteAble";
 import {StringStream} from "../../StringStream";
 import {FrameBase} from "../FrameBase";
 import {BaseFrames} from "../../base/BaseFrames";
-
-export const enum PointAlign {
-    TOPLEFT = "TOPLEFT",
-    TOPRIGHT = "TOPRIGHT",
-    BOTTOMLEFT = "BOTTOMLEFT",
-    BOTTOMRIGHT = "BOTTOMRIGHT",
-    TOP = "TOP",
-    BOTTOM = "BOTTOM",
-    LEFT = "LEFT",
-    RIGHT = "RIGHT",
-}
+import {PAlign} from "./PAlign";
 
 export class SetPoint implements IWriteAble {
-    public myPoint: PointAlign;
+    public myPoint: PAlign;
     public parentFrame: FrameBase | BaseFrames;
-    public parentPoint: PointAlign;
+    public parentPoint: PAlign;
     public xx: number;
     public yy: number;
 
-    constructor(myPoint: PointAlign, parentFrame: FrameBase | BaseFrames, parentPoint: PointAlign, xx: number, yy: number) {
+    constructor(myPoint: PAlign, parentFrame: FrameBase | BaseFrames, parentPoint: PAlign, xx: number, yy: number) {
         this.myPoint = myPoint;
         this.parentFrame = parentFrame;
         this.parentPoint = parentPoint;

@@ -2,6 +2,7 @@ import {Root} from "./src/fdf/Root";
 import {testMakeAllianceDialog} from "./tests/testMakeAllianceDialog";
 import {testMakeChatDialog} from "./tests/testMakeChatDialog";
 import {testAll} from "./tests/testAll";
+import {FrameBase} from "./src/fdf/FrameBase";
 
 const fs = require('fs');
 
@@ -23,9 +24,32 @@ const testAllStuffRoot = new Root({
 });
 
 
+const classes: Set<String> = new Set();
+function traverse(frame: FrameBase) {
+    if (classes.has(frame.Name)) {
+        console.error(`Duplicated frame: ${frame.Name}`); //FUCK
+    }
+    if (frame.Name.length > 0) {
+        classes.add(frame.Name);
+    }
+    for (let child of frame.Children) {
+        traverse(child);
+    }
+}
+for (let child of testAllStuffRoot.Children) {
+    traverse(child);
+}
+let testAllStuffClassDef = "export const enum Classes {\n";
+classes.forEach((value) => {
+    testAllStuffClassDef += `    ${value} = "${value}",\n`;
+});
+testAllStuffClassDef += "}\n"
+
+
 if (!fs.existsSync("./target")) {
     fs.mkdir("./target", console.log);
 }
 fs.writeFileSync("./target/testAllianceDialog.txt", allianceDialogRoot.compileFile().data);
 fs.writeFileSync("./target/testChatDialog.txt", chatDialogRoot.compileFile().data);
 fs.writeFileSync("./target/testAllStuff.txt", testAllStuffRoot.compileFile().data);
+fs.writeFileSync("./target/testAllStuff.ts", testAllStuffClassDef);

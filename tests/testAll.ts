@@ -22,6 +22,11 @@ import {FramePopupMenu} from "../src/fdf/FramePopupMenu";
 import {FrameGlueCheckbox} from "../src/fdf/FrameGlueCheckbox";
 import {FrameEditBox} from "../src/fdf/FrameEditBox";
 import {FrameTextArea} from "../src/fdf/FrameTextArea";
+import {FrameSimpleFrame} from "../src/fdf/FrameSimpleFrame";
+import {FrameTexture} from "../src/fdf/FrameTexture";
+import {Anchor} from "../src/fdf/subtypes/Anchor";
+import {PAlign} from "../src/fdf/subtypes/PAlign";
+import {FrameString} from "../src/fdf/FrameString";
 
 export function testAll() {
     const backdrop = new FrameBackdrop("BackdropTest", {
@@ -112,6 +117,21 @@ export function testAll() {
         TextAreaScrollBar: frameScrollbar
     });
 
+    const simpleFrame = new FrameSimpleFrame("TestSimple", {
+        DecorateFileNames: true,
+        Children: [
+          new FrameTexture({
+              InheritsFrom: "ResourceBarIconTemplate",
+              Anchors: [new Anchor(PAlign.TOPLEFT, 0.0, -0.003125)],
+              File: "GoldIcon",
+          }),
+          new FrameString("testString",{
+              InheritsFrom: "ResourceBarTextTemplate",
+              Anchors: [new Anchor(PAlign.TOPRIGHT, -0.267, -0.003125)],
+              Width: 0.054875,
+          }),
+        ],
+    });
     return [
         backdrop,
         highlight,
@@ -125,5 +145,6 @@ export function testAll() {
         glueCheckBox,
         editBox,
         textArea,
+        simpleFrame,
     ];
 }

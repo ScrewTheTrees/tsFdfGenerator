@@ -6,11 +6,12 @@ import {CornerFlagsAll} from "../src/fdf/subtypes/CornerFlags";
 import {FrameDialog} from "../src/fdf/FrameDialog";
 import {FrameText} from "../src/fdf/FrameText";
 import {BaseFrames} from "../src/base/BaseFrames";
-import {PointAlign, SetPoint} from "../src/fdf/subtypes/SetPoint";
+import {SetPoint} from "../src/fdf/subtypes/SetPoint";
 import {FontJustify} from "../src/fdf/subtypes/FontJustify";
 import {FrameGlueTextButton} from "../src/fdf/FrameGlueTextButton";
 import {FrameGlueCheckbox} from "../src/fdf/FrameGlueCheckbox";
 import {FrameScrollbar} from "../src/fdf/FrameScrollbar";
+import {PAlign} from "../src/fdf/subtypes/PAlign";
 
 export function testMakeAllianceDialog() {
     let allianceBackdrop = new FrameBackdrop("AllianceBackdrop", {
@@ -32,7 +33,7 @@ export function testMakeAllianceDialog() {
     let allianceTitle = new FrameText("AllianceTitle", {
         InheritsFrom: BaseFrames.EscMenuTitleTextTemplate,
         Points: [
-            new SetPoint(PointAlign.TOPLEFT, allianceDialog, PointAlign.TOPLEFT, 0.03375, -0.03),
+            new SetPoint(PAlign.TOPLEFT, allianceDialog, PAlign.TOPLEFT, 0.03375, -0.03),
         ],
         FontJustificationH: FontJustify.JUSTIFYLEFT,
         Text: "ALLIANCES"
@@ -40,7 +41,7 @@ export function testMakeAllianceDialog() {
     let resourceTradingTitle = new FrameText("ResourceTradingTitle", {
         InheritsFrom: BaseFrames.EscMenuTitleTextTemplate,
         Points: [
-            new SetPoint(PointAlign.TOPRIGHT, allianceDialog, PointAlign.TOPRIGHT, -0.045, -0.03),
+            new SetPoint(PAlign.TOPRIGHT, allianceDialog, PAlign.TOPRIGHT, -0.045, -0.03),
         ],
         FontJustificationH: FontJustify.JUSTIFYLEFT,
         Text: "RESOURCE_TRADING"
@@ -48,7 +49,7 @@ export function testMakeAllianceDialog() {
     let playerHeader = new FrameText("PlayersHeader", {
         InheritsFrom: BaseFrames.EscMenuLabelTextSmallTemplate,
         Points: [
-            new SetPoint(PointAlign.TOPLEFT, allianceDialog, PointAlign.TOPLEFT, 0.03625, -0.060875),
+            new SetPoint(PAlign.TOPLEFT, allianceDialog, PAlign.TOPLEFT, 0.03625, -0.060875),
         ],
         Text: "PLAYERS"
     });
@@ -56,7 +57,7 @@ export function testMakeAllianceDialog() {
         InheritsFrom: BaseFrames.EscMenuLabelTextSmallTemplate,
         Width: 0.037,
         Points: [
-            new SetPoint(PointAlign.BOTTOMLEFT, playerHeader, PointAlign.BOTTOMLEFT, 0.221025, 0.0),
+            new SetPoint(PAlign.BOTTOMLEFT, playerHeader, PAlign.BOTTOMLEFT, 0.221025, 0.0),
         ],
         FontJustificationH: FontJustify.JUSTIFYCENTER,
         Text: "ALLY"
@@ -65,7 +66,7 @@ export function testMakeAllianceDialog() {
         InheritsFrom: BaseFrames.EscMenuLabelTextSmallTemplate,
         Width: 0.037,
         Points: [
-            new SetPoint(PointAlign.BOTTOMLEFT, allyHeader, PointAlign.BOTTOMRIGHT, 0.013, 0.0),
+            new SetPoint(PAlign.BOTTOMLEFT, allyHeader, PAlign.BOTTOMRIGHT, 0.013, 0.0),
         ],
         FontJustificationH: FontJustify.JUSTIFYCENTER,
         Text: "SHARE_VISION"
@@ -74,7 +75,7 @@ export function testMakeAllianceDialog() {
         InheritsFrom: BaseFrames.EscMenuLabelTextSmallTemplate,
         Width: 0.037,
         Points: [
-            new SetPoint(PointAlign.BOTTOMLEFT, visionHeader, PointAlign.BOTTOMRIGHT, 0.013, 0.0),
+            new SetPoint(PAlign.BOTTOMLEFT, visionHeader, PAlign.BOTTOMRIGHT, 0.013, 0.0),
         ],
         FontJustificationH: FontJustify.JUSTIFYCENTER,
         Text: "SHARE_UNITS"
@@ -83,7 +84,7 @@ export function testMakeAllianceDialog() {
         InheritsFrom: BaseFrames.EscMenuLabelTextSmallTemplate,
         Width: 0.048,
         Points: [
-            new SetPoint(PointAlign.BOTTOMLEFT, unitsHeader, PointAlign.BOTTOMRIGHT, 0.02275, 0.0),
+            new SetPoint(PAlign.BOTTOMLEFT, unitsHeader, PAlign.BOTTOMRIGHT, 0.02275, 0.0),
         ],
         FontJustificationH: FontJustify.JUSTIFYCENTER,
         Text: "GOLD"
@@ -92,7 +93,7 @@ export function testMakeAllianceDialog() {
         InheritsFrom: BaseFrames.EscMenuLabelTextSmallTemplate,
         Width: 0.048,
         Points: [
-            new SetPoint(PointAlign.BOTTOMLEFT, goldHeader, PointAlign.BOTTOMRIGHT, 0.01, 0.0),
+            new SetPoint(PAlign.BOTTOMLEFT, goldHeader, PAlign.BOTTOMRIGHT, 0.01, 0.0),
         ],
         FontJustificationH: FontJustify.JUSTIFYCENTER,
         Text: "LUMBER"
@@ -111,7 +112,7 @@ export function testMakeAllianceDialog() {
         InheritsWithChildren: true,
         Width: 0.13,
         Points: [
-            new SetPoint(PointAlign.BOTTOMRIGHT, allianceDialog, PointAlign.BOTTOM, -0.003, 0.03),
+            new SetPoint(PAlign.BOTTOMRIGHT, allianceDialog, PAlign.BOTTOM, -0.003, 0.03),
         ],
         ButtonText: "AllianceAcceptButtonText",
         Children: [
@@ -126,7 +127,7 @@ export function testMakeAllianceDialog() {
         InheritsWithChildren: true,
         Width: 0.13,
         Points: [
-            new SetPoint(PointAlign.LEFT, allianceAcceptButton, PointAlign.RIGHT, 0.005, 0.0),
+            new SetPoint(PAlign.LEFT, allianceAcceptButton, PAlign.RIGHT, 0.005, 0.0),
         ],
         ButtonText: "AllianceCancelButtonText",
         Children: [
@@ -142,12 +143,12 @@ export function testMakeAllianceDialog() {
         Width: 0.024,
         Height: 0.024,
         Points: [
-            new SetPoint(PointAlign.BOTTOM, allianceDialog, PointAlign.BOTTOM, -0.056875, 0.06875),
+            new SetPoint(PAlign.BOTTOM, allianceDialog, PAlign.BOTTOM, -0.056875, 0.06875),
         ],
     });
     let alliedVictoryLabel = new FrameText("AlliedVictoryLabel", {
         Points: [
-            new SetPoint(PointAlign.LEFT, alliedVictoryCheckBox, PointAlign.RIGHT, 0.01, 0.0),
+            new SetPoint(PAlign.LEFT, alliedVictoryCheckBox, PAlign.RIGHT, 0.01, 0.0),
         ],
         Text: "ALLIED_VICTORY",
     });

@@ -7,6 +7,7 @@ import {Vector2} from "../other/Vector2";
 import {RGBColor} from "../other/RGBColor";
 import {FrameFont} from "./subtypes/FrameFont";
 import {Vector4} from "../other/Vector4";
+import {Anchor} from "./subtypes/Anchor";
 
 export type FrameBaseArgs = {
     Width?: number,
@@ -19,7 +20,9 @@ export type FrameBaseArgs = {
 
     Children?: FrameBase[],
     Points?: SetPoint[],
+    Anchors?: Anchor[],
 
+    Text?: string,
     FrameFont?: FrameFont,
     FontJustificationH?: FontJustify,
     FontJustificationV?: FontJustify,
@@ -45,7 +48,9 @@ export abstract class FrameBase implements IWriteAble {
 
     public Children: FrameBase[] = []; //Children of this frame.
     public Points: SetPoint[] = []; //Used to align what this frame "sticks" to.
+    public Anchors: Anchor[] = []; //Used to align what this frame "sticks" to direct parent. Mostly used for Texture/FrameString.
 
+    public Text?: string;
     public FrameFont?: FrameFont;
     public FontJustificationH?: FontJustify; //How the text should expand/align.
     public FontJustificationV?: FontJustify; //Is this even real?
@@ -81,14 +86,18 @@ export abstract class FrameBase implements IWriteAble {
         if (this.SetAllPoints) str.writeIndentation().writeLine(`SetAllPoints,`);
         this.writeGeneric(str, this.Width, "Width");
         this.writeGeneric(str, this.Height, "Height");
+        this.writeGeneric(str, this.Text, "Text");
 
         for (let point of this.Points) {
             point.compileToStringStream(str);
         }
+        for (let ang of this.Anchors) {
+            ang.compileToStringStream(str);
+        }
 
         this.writeFontData(str);
     }
-    private writeFontData(str: StringStream) {
+    public writeFontData(str: StringStream) {
         this.writeColor(str, this.FontColor, "FontColor");
         this.writeColor(str, this.FontHighlightColor, "FontHighlightColor");
         this.writeColor(str, this.FontDisabledColor, "FontDisabledColor");
@@ -141,8 +150,14 @@ export abstract class FrameBase implements IWriteAble {
                 .writeLine(`${header} ${vec.toString()},`);
         }
     }
+    public writeAnchor(str: StringStream, ang: Anchor | undefined, header: string) {
+        if (ang != undefined) {
+            str.writeIndentation()
+                .writeLine(`${header} ${ang.toString()},`);
+        }
+    }
 
-    private writeInheritsFrom(str: StringStream) {
+    public writeInheritsFrom(str: StringStream) {
         if (this.InheritsFrom != null) {
             str.writeString(` INHERITS`);
             if (this.InheritsWithChildren) str.writeString(` WITHCHILDREN`);
