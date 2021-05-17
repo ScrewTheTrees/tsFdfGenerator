@@ -1,8 +1,10 @@
 import {FrameBase, FrameBaseArgs} from "./FrameBase";
 import {StringStream} from "../StringStream";
+import {Vector4} from "../other/Vector4";
 
 export type FrameTextureArgs = FrameBaseArgs & {
     File?: string,
+    TexCoord?: Vector4,
 };
 
 /**
@@ -10,6 +12,7 @@ export type FrameTextureArgs = FrameBaseArgs & {
  */
 export class FrameTexture extends FrameBase {
     public File?: string;
+    public TexCoord?: Vector4;
 
     public constructor(args?: FrameTextureArgs) {
         super("");
@@ -22,6 +25,7 @@ export class FrameTexture extends FrameBase {
         this.writeCommonData(str);
 
         this.writeGeneric(str, this.File, "File");
+        this.writeVector(str, this.TexCoord, "TexCoord");
 
         this.printChildren(str);
         str.popIndent();

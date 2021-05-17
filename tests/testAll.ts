@@ -27,6 +27,7 @@ import {FrameTexture} from "../src/fdf/FrameTexture";
 import {Anchor} from "../src/fdf/subtypes/Anchor";
 import {PAlign} from "../src/fdf/subtypes/PAlign";
 import {FrameString} from "../src/fdf/FrameString";
+import {Font} from "../src/fdf/subtypes/Font";
 
 export function testAll() {
     const backdrop = new FrameBackdrop("BackdropTest", {
@@ -129,6 +130,7 @@ export function testAll() {
               InheritsFrom: "ResourceBarTextTemplate",
               Anchors: [new Anchor(PAlign.TOPRIGHT, -0.267, -0.003125)],
               Width: 0.054875,
+              Font: new Font(BaseFonts.MasterFont, 0.01)
           }),
         ],
     });
