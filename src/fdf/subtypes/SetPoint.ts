@@ -28,7 +28,7 @@ export class SetPoint implements IWriteAble {
         this.xx = xx;
         this.yy = yy;
     }
-    writeToString(str: StringStream): void {
+    compileToStringStream(str: StringStream): void {
         str.writeIndentation()
             .writeString(`SetPoint ${this.myPoint}, `);
 

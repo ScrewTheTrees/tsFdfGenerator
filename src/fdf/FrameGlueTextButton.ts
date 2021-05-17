@@ -17,15 +17,14 @@ export class FrameGlueTextButton extends FrameControlBase {
         Object.assign(this, args);
     }
 
-    writeToString(str: StringStream): void {
+    compileToStringStream(str: StringStream): void {
         this.writeBaseHeader(str, "GLUETEXTBUTTON");
         str.pushIndent();
         this.writeCommonData(str);
         this.writeControl(str);
 
-        str.writeIndentation().writeLine(`ButtonText "${this.ButtonText}",`)
-        if (this.ButtonPushedTextOffset)
-            str.writeIndentation().writeLine(`ButtonPushedTextOffset ${this.ButtonPushedTextOffset.toString()},`);
+        this.writeGeneric(str, this.ButtonText, "ButtonText");
+        this.writeVector(str, this.ButtonPushedTextOffset, "ButtonPushedTextOffset");
 
         this.printChildren(str);
 

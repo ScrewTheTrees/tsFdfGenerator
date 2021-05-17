@@ -2,7 +2,7 @@ import {StringStream} from "../StringStream";
 import {FrameSlider} from "./FrameSlider";
 
 export class FrameScrollbar extends FrameSlider {
-    writeToString(str: StringStream): void {
+    compileToStringStream(str: StringStream): void {
         this.writeBaseHeader(str, "SCROLLBAR");
         str.pushIndent();
         this.writeCommonData(str);

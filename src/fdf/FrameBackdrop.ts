@@ -18,12 +18,12 @@ export type FrameBackdropTypes = FrameBaseArgs & {
 };
 
 export class FrameBackdrop extends FrameBase {
-    public BackdropBackground?: BaseBackgrounds;
+    public BackdropBackground?: BaseBackgrounds | string;
     public BackdropCornerFlags: Set<CornerFlags> = new Set();
     public BackdropCornerSize?: number;
     public BackdropBackgroundSize?: number;
     public BackdropBackgroundInsets?: Vector4;
-    public BackdropEdgeFile?: BaseBorders;
+    public BackdropEdgeFile?: BaseBorders | string;
 
     //Flags
     public BackdropTileBackground: boolean = false;
@@ -34,20 +34,20 @@ export class FrameBackdrop extends FrameBase {
         Object.assign(this, args);
     }
 
-    writeToString(str: StringStream): void {
+    compileToStringStream(str: StringStream): void {
         this.writeBaseHeader(str, "BACKDROP");
         str.pushIndent();
         this.writeCommonData(str);
 
-        if (this.BackdropTileBackground) str.writeIndentation().writeString(`BackdropTileBackground,\n`);
-        if (this.BackdropBlendAll) str.writeIndentation().writeString(`BackdropBlendAll,\n`);
+        if (this.BackdropTileBackground) str.writeIndentation().writeLine(`BackdropTileBackground,`);
+        if (this.BackdropBlendAll) str.writeIndentation().writeLine(`BackdropBlendAll,`);
         this.writeSet(str, this.BackdropCornerFlags, "BackdropCornerFlags");
-        if (this.BackdropBackground) str.writeIndentation().writeString(`BackdropBackground "${this.BackdropBackground}",\n`);
+        if (this.BackdropBackground) str.writeIndentation().writeLine(`BackdropBackground "${this.BackdropBackground}",`);
 
-        if (this.BackdropCornerSize) str.writeIndentation().writeString(`BackdropCornerSize ${this.BackdropCornerSize},\n`);
-        if (this.BackdropBackgroundSize) str.writeIndentation().writeString(`BackdropBackgroundSize ${this.BackdropBackgroundSize},\n`);
-        if (this.BackdropBackgroundInsets) str.writeIndentation().writeString(`BackdropBackgroundInsets ${this.BackdropBackgroundInsets.toString()},\n`);
-        if (this.BackdropEdgeFile) str.writeIndentation().writeString(`BackdropEdgeFile "${this.BackdropEdgeFile}",\n`);
+        this.writeGeneric(str, this.BackdropCornerSize, "BackdropCornerSize");
+        this.writeGeneric(str, this.BackdropBackgroundSize, "BackdropBackgroundSize");
+        this.writeVector(str, this.BackdropBackgroundInsets, "BackdropBackgroundInsets");
+        this.writeGeneric(str, this.BackdropEdgeFile, "BackdropEdgeFile");
 
         this.printChildren(str);
 

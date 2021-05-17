@@ -19,7 +19,7 @@ export class FrameSlider extends FrameControlBase {
         Object.assign(this, args);
     }
 
-    writeToString(str: StringStream): void {
+    compileToStringStream(str: StringStream): void {
         this.writeBaseHeader(str, "SLIDER");
         str.pushIndent();
         this.writeCommonData(str);

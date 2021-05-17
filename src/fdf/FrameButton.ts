@@ -10,7 +10,7 @@ export class FrameButton extends FrameControlBase {
         Object.assign(this, args);
     }
 
-    writeToString(str: StringStream): void {
+    compileToStringStream(str: StringStream): void {
         this.writeBaseHeader(str, "BUTTON");
         str.pushIndent();
         this.writeCommonData(str);

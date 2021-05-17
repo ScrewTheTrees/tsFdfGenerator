@@ -12,7 +12,7 @@ export class FrameFont implements IWriteAble {
         this.size = size;
         this.unknown = unknown;
     }
-    public writeToString(str: StringStream) {
+    public compileToStringStream(str: StringStream) {
         str.writeIndentation().writeLine(`FrameFont "${this.font}", ${this.size}, "${this.unknown}",`);
     }
 }

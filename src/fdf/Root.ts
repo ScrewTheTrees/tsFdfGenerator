@@ -32,7 +32,7 @@ export class Root{
         if (this.Children.length > 0) {
             str.writeString("//--Frames--\n");
             for (let child of this.Children) {
-                child.writeToString(str);
+                child.compileToStringStream(str);
             }
         }
         str.writeString("\n");

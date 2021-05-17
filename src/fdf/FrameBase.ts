@@ -6,6 +6,7 @@ import {FontJustify} from "./subtypes/FontJustify";
 import {Vector2} from "../other/Vector2";
 import {RGBColor} from "../other/RGBColor";
 import {FrameFont} from "./subtypes/FrameFont";
+import {Vector4} from "../other/Vector4";
 
 export type FrameBaseArgs = {
     Width?: number,
@@ -61,7 +62,7 @@ export abstract class FrameBase implements IWriteAble {
     }
     public printChildren(str: StringStream) {
         for (let child of this.Children) {
-            child.writeToString(str);
+            child.compileToStringStream(str);
         }
     }
 
@@ -82,20 +83,19 @@ export abstract class FrameBase implements IWriteAble {
         this.writeGeneric(str, this.Height, "Height");
 
         for (let point of this.Points) {
-            point.writeToString(str);
+            point.compileToStringStream(str);
         }
 
         this.writeFontData(str);
     }
     private writeFontData(str: StringStream) {
-        if (this.FontColor) str.writeIndentation().writeString(`FontColor ${this.FontColor.toString()},\n`);
-        if (this.FontHighlightColor) str.writeIndentation().writeString(`FontHighlightColor ${this.FontHighlightColor.toString()},\n`);
-        if (this.FontDisabledColor) str.writeIndentation().writeString(`FontDisabledColor ${this.FontDisabledColor.toString()},\n`);
-        if (this.FontShadowColor) str.writeIndentation().writeString(`FontShadowColor ${this.FontShadowColor.toString()},\n`);
-        if (this.FontShadowOffset) str.writeIndentation().writeString(`FontShadowOffset ${this.FontShadowOffset.toString()},\n`);
-        if (this.FrameFont) this.FrameFont.writeToString(str);
-        if (this.FontJustificationOffset) str.writeIndentation().writeString(`FontJustificationOffset ${this.FontJustificationOffset.toString()},\n`);
-
+        this.writeColor(str, this.FontColor, "FontColor");
+        this.writeColor(str, this.FontHighlightColor, "FontHighlightColor");
+        this.writeColor(str, this.FontDisabledColor, "FontDisabledColor");
+        this.writeColor(str, this.FontShadowColor, "FontShadowColor");
+        this.writeVector(str, this.FontShadowOffset, "FontShadowOffset");
+        if (this.FrameFont) this.FrameFont.compileToStringStream(str);
+        this.writeVector(str, this.FontJustificationOffset, "FontJustificationOffset");
         this.writeGeneric(str, this.FontJustificationH, "FontJustificationH", true);
         this.writeGeneric(str, this.FontJustificationV, "FontJustificationV", true);
         this.writeGeneric(str, this.FontFlags, "FontFlags");
@@ -129,6 +129,18 @@ export abstract class FrameBase implements IWriteAble {
             str.writeString(`",\n`);
         }
     }
+    public writeColor(str: StringStream, color: RGBColor | undefined, header: string) {
+        if (color != undefined) {
+            str.writeIndentation()
+                .writeLine(`${header} ${color.toString()},`);
+        }
+    }
+    public writeVector(str: StringStream, vec: Vector2 | Vector4 | undefined, header: string) {
+        if (vec != undefined) {
+            str.writeIndentation()
+                .writeLine(`${header} ${vec.toString()},`);
+        }
+    }
 
     private writeInheritsFrom(str: StringStream) {
         if (this.InheritsFrom != null) {
@@ -137,6 +149,6 @@ export abstract class FrameBase implements IWriteAble {
             str.writeString(` "${typeof this.InheritsFrom == "string" ? this.InheritsFrom : this.InheritsFrom.Name}"`);
         }
     }
-    public abstract writeToString(str: StringStream): void;
+    public abstract compileToStringStream(str: StringStream): void;
 }
 

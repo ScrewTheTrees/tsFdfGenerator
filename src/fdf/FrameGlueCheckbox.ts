@@ -1,23 +1,33 @@
 import {StringStream} from "../StringStream";
-import {FrameBase, FrameBaseArgs} from "./FrameBase";
+import {FrameHighlightType} from "./FrameTypes";
+import {FrameControlBase, FrameControlBaseArgs} from "./FrameControlBase";
 
 
-export type FrameGlueCheckboxArgs = FrameBaseArgs & {};
+export type FrameGlueCheckboxArgs = FrameControlBaseArgs & {
+    CheckBoxCheckHighlight?: FrameHighlightType,
+    CheckBoxDisabledCheckHighlight?: FrameHighlightType,
+};
 
-export class FrameGlueCheckbox extends FrameBase {
+export class FrameGlueCheckbox extends FrameControlBase {
+
+    public CheckBoxCheckHighlight?: FrameHighlightType;
+    public CheckBoxDisabledCheckHighlight?: FrameHighlightType;
+
     public constructor(name: string, args?: FrameGlueCheckboxArgs) {
         super(name);
         Object.assign(this, args);
     }
 
-    writeToString(str: StringStream): void {
+    compileToStringStream(str: StringStream): void {
         this.writeBaseHeader(str, "GLUECHECKBOX");
         str.pushIndent();
-
         this.writeCommonData(str);
+        this.writeControl(str);
+
+        this.writeFrame(str, this.CheckBoxCheckHighlight, "CheckBoxCheckHighlight");
+        this.writeFrame(str, this.CheckBoxDisabledCheckHighlight, "CheckBoxDisabledCheckHighlight");
 
         this.printChildren(str);
-
         str.popIndent();
         str.writeIndentation().writeString(`}\n`)
     }

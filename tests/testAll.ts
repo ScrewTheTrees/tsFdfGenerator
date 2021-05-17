@@ -18,6 +18,10 @@ import {FrameMenu} from "../src/fdf/FrameMenu";
 import {RGBAColor} from "../src/other/RGBAColor";
 import {RGBColor} from "../src/other/RGBColor";
 import {FrameButton} from "../src/fdf/FrameButton";
+import {FramePopupMenu} from "../src/fdf/FramePopupMenu";
+import {FrameGlueCheckbox} from "../src/fdf/FrameGlueCheckbox";
+import {FrameEditBox} from "../src/fdf/FrameEditBox";
+import {FrameTextArea} from "../src/fdf/FrameTextArea";
 
 export function testAll() {
     const backdrop = new FrameBackdrop("BackdropTest", {
@@ -84,6 +88,29 @@ export function testAll() {
     const button = new FrameButton("TestButton", {
         ControlBackdrop: backdrop,
     });
+    const popupMenu = new FramePopupMenu("TestPopupMenu", {
+        Width: 0.111875,
+        Height: 0.03,
+        PopupButtonInset: 0.01,
+        PopupMenuFrame: menu
+    });
+    const glueCheckBox = new FrameGlueCheckbox("TestGlueCheckbox", {
+        Width: 0.024,
+        CheckBoxCheckHighlight: "EscMenuCheckHighlightTemplate",
+        CheckBoxDisabledCheckHighlight: highlight,
+    });
+    const editBox = new FrameEditBox("TestEditBox", {
+        Width: 0.024,
+        EditBorderSize: 123,
+        EditCursorColor: new RGBColor(1, 1, 1),
+    });
+    const textArea = new FrameTextArea("TestTextArea", {
+        Width: 0.024,
+        TextAreaLineGap: 0.33,
+        TextAreaLineHeight: 0.02,
+        TextAreaInset: 0.03,
+        TextAreaScrollBar: frameScrollbar
+    });
 
     return [
         backdrop,
@@ -94,5 +121,9 @@ export function testAll() {
         frameScrollbar,
         menu,
         button,
+        popupMenu,
+        glueCheckBox,
+        editBox,
+        textArea,
     ];
 }

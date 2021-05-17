@@ -22,14 +22,13 @@ export class FramePopupMenu extends FrameControlBase {
         Object.assign(this, args);
     }
 
-    writeToString(str: StringStream): void {
+    compileToStringStream(str: StringStream): void {
         this.writeBaseHeader(str, "POPUPMENU");
         str.pushIndent();
-
         this.writeCommonData(str);
         this.writeControl(str);
 
-        if (this.PopupButtonInset) str.writeIndentation().writeString(`PopupButtonInset ${this.PopupButtonInset},\n`);
+        this.writeGeneric(str, this.PopupButtonInset, "PopupButtonInset");
         this.writeFrame(str, this.PopupTitleFrame, "PopupTitleFrame");
         this.writeFrame(str, this.PopupArrowFrame, "PopupArrowFrame");
         this.writeFrame(str, this.PopupMenuFrame, "PopupMenuFrame");

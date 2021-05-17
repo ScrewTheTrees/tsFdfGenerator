@@ -13,7 +13,7 @@ export class FrameText extends FrameBase {
         Object.assign(this, args);
     }
 
-    writeToString(str: StringStream): void {
+    compileToStringStream(str: StringStream): void {
         this.writeBaseHeader(str, "TEXT");
         str.pushIndent();
 

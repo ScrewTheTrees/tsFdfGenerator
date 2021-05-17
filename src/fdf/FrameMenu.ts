@@ -18,15 +18,13 @@ export class FrameMenu extends FrameControlBase {
         Object.assign(this, args);
     }
 
-    writeToString(str: StringStream): void {
+    compileToStringStream(str: StringStream): void {
         this.writeBaseHeader(str, "MENU");
         str.pushIndent();
         this.writeCommonData(str);
         this.writeControl(str);
 
-        if (this.MenuTextHighlightColor) str.writeIndentation()
-            .writeLine(`MenuTextHighlightColor ${this.MenuTextHighlightColor.toString()},`);
-
+        this.writeColor(str, this.MenuTextHighlightColor, "MenuTextHighlightColor");
         this.writeGeneric(str, this.MenuItemHeight, "MenuItemHeight");
         this.writeGeneric(str, this.MenuBorder, "MenuBorder");
 
