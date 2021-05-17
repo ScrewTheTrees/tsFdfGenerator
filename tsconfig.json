@@ -8,8 +8,7 @@
     "outDir": "./target",
     "baseUrl": "./index.ts",
     "lib": [
-      "esnext",
-      "dom"
+      "esnext"
     ],
 
     "moduleResolution": "classic",
