@@ -3,15 +3,16 @@ import {StringStream} from "../../StringStream";
 import {FrameBase} from "../FrameBase";
 import {BaseFrames} from "../../base/BaseFrames";
 import {PAlign} from "./PAlign";
+import {FrameType} from "../FrameTypes";
 
 export class SetPoint implements IWriteAble {
     public myPoint: PAlign;
-    public parentFrame: FrameBase | BaseFrames;
+    public parentFrame: FrameType;
     public parentPoint: PAlign;
     public xx: number;
     public yy: number;
 
-    constructor(myPoint: PAlign, parentFrame: FrameBase | BaseFrames, parentPoint: PAlign, xx: number, yy: number) {
+    constructor(myPoint: PAlign, parentFrame: FrameType, parentPoint: PAlign, xx: number, yy: number) {
         this.myPoint = myPoint;
         this.parentFrame = parentFrame;
         this.parentPoint = parentPoint;

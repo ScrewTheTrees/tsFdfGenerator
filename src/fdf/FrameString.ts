@@ -4,10 +4,12 @@ import {Font} from "./subtypes/Font";
 
 export type FrameStringArgs = FrameBaseArgs & {
     Font?: Font,
+    TextLength?: number,
 };
 
 export class FrameString extends FrameBase {
     public Font?: Font;
+    public TextLength?: number;
     public constructor(name?: string, args?: FrameStringArgs) {
         super(name || "");
         Object.assign(this, args);
@@ -17,7 +19,10 @@ export class FrameString extends FrameBase {
         this.writeStringHeader(str);
         str.pushIndent();
         this.writeCommonData(str);
+
         if (this.Font) this.Font.compileToStringStream(str);
+        this.writeGeneric(str, this.TextLength, "TextLength");
+
         this.printChildren(str);
         str.popIndent();
         str.writeIndentation().writeString(`}\n`)
