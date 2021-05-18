@@ -45,7 +45,6 @@ classes.forEach((value) => {
 });
 testAllStuffClassDef += "}\n"
 
-
 if (!fs.existsSync("./target")) {
     fs.mkdir("./target", console.log);
 }
@@ -53,3 +52,12 @@ fs.writeFileSync("./target/testAllianceDialog.txt", allianceDialogRoot.compileFi
 fs.writeFileSync("./target/testChatDialog.txt", chatDialogRoot.compileFile().data);
 fs.writeFileSync("./target/testAllStuff.txt", testAllStuffRoot.compileFile().data);
 fs.writeFileSync("./target/testAllStuff.ts", testAllStuffClassDef);
+
+
+const textCase = allianceDialogRoot.compileClasses("TestUIRoot");
+if (!fs.existsSync("./target/classes")) {
+    fs.mkdir("./target/classes", console.log);
+}
+textCase.forEach(((value, key) => {
+    fs.writeFileSync(`./target/classes/${key}.ts`, value);
+}));

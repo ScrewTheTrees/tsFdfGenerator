@@ -20,6 +20,10 @@ export class FrameSimpleFrame extends FrameBase {
         str.popIndent();
         str.writeIndentation().writeString(`}\n`)
     }
+
+    public isSimple(): boolean {
+        return true;
+    }
 }
 
 

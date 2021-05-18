@@ -8,6 +8,7 @@ import {RGBColor} from "../other/RGBColor";
 import {FrameFont} from "./subtypes/FrameFont";
 import {Vector4} from "../other/Vector4";
 import {Anchor} from "./subtypes/Anchor";
+import {FrameSimpleFrame} from "./FrameSimpleFrame";
 
 export type FrameBaseArgs = {
     Width?: number,
@@ -165,5 +166,62 @@ export abstract class FrameBase implements IWriteAble {
         }
     }
     public abstract compileToStringStream(str: StringStream): void;
+    public isSimple(): boolean {
+        return false;
+    }
+
+    public compileToClass(depth: number) {
+        let theClass = new StringStream();
+        let theImports = new StringStream();
+        let theFields = new StringStream();
+
+        theClass.writeLine(`export class ${this.Name}{`)
+        theClass.pushIndent();
+        theFields.pushIndent();
+
+        theClass.writeIndentation().writeLine(`public frameHandle: framehandle;`);
+        theClass.writeIndentation().writeLine(`public frameContext: number;`);
+        theClass.writeLine("");
+
+        theClass.writeIndentation().writeLine(`public constructor(context: number) {`); //Start constructor.
+        theClass.pushIndent().writeIndentation()
+            .writeLine(`this.frameContext = context;`)
+        if (depth == 0) {
+            if (this.isSimple()) {
+                theClass.writeIndentation()
+                    .writeLine(`this.frameHandle = BlzCreateSimpleFrame("${this.Name}", BlzGetOriginFrame(ORIGIN_FRAME_GAME_UI, 0), this.frameContext);`);
+            } else {
+                theClass.writeIndentation()
+                    .writeLine(`this.frameHandle = BlzCreateFrame("${this.Name}", BlzGetOriginFrame(ORIGIN_FRAME_GAME_UI, 0), 0, this.frameContext);`);
+            }
+        } else {
+            theClass.writeIndentation()
+                .writeLine(`this.frameHandle = BlzGetFrameByName("${this.Name}",this.frameContext);`);
+        }
+
+        for (let i = 0; i < this.Children.length; i++) {
+            let child = this.Children[i];
+            if (child.Name.length > 0) {
+                //Write constructor
+                theClass.writeIndentation()
+                    .writeString(`this.${child.Name} = new ${child.Name}(this.frameContext);`);
+
+                //Write fields
+                theFields.writeIndentation()
+                    .writeLine(`public ${child.Name}: ${child.Name};`);
+
+                theImports.writeLine(`import {${child.Name}} from "./${child.Name}";`)
+            }
+            theClass.writeLine(`//Child ${i} ${child.constructor.name}`);
+        }
+
+        theClass.popIndent().writeIndentation().writeLine(`}`); //End Constructor.
+
+        theClass.writeLine(theFields.data);
+
+        theClass.popIndent();
+        theClass.writeLine(`}`);
+        return theImports.data + "\n\n" + theClass.data;
+    }
 }
 
