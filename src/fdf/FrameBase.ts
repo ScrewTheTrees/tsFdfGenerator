@@ -8,7 +8,6 @@ import {RGBColor} from "../other/RGBColor";
 import {FrameFont} from "./subtypes/FrameFont";
 import {Vector4} from "../other/Vector4";
 import {Anchor} from "./subtypes/Anchor";
-import {FrameSimpleFrame} from "./FrameSimpleFrame";
 
 export type FrameBaseArgs = {
     Width?: number,
@@ -18,6 +17,8 @@ export type FrameBaseArgs = {
 
     SetAllPoints?: boolean,
     DecorateFileNames?: boolean,
+    UseActiveContext?: boolean,
+    TabFocusPush?: boolean,
 
     Children?: FrameBase[],
     Points?: SetPoint[],
@@ -46,6 +47,12 @@ export abstract class FrameBase implements IWriteAble {
     //Flags
     public SetAllPoints: boolean = false; //Sets all the points to its parent frame.
     public DecorateFileNames: boolean = false; //Inside this Frame Filenames are lookups in a string table like GameInterface etc.
+    public UseActiveContext: boolean = false; //Not entirely sure.
+
+    //Tab focus
+    public TabFocusPush: boolean = false; //Used to set the tab button focus on this and its children glue buttons?
+    public TabFocusDefault: boolean = false; //This is the default Tab focus button.
+    public TabFocusNext?: string; //The next glue button to tab to when hitting Tab
 
     public Children: FrameBase[] = []; //Children of this frame.
     public Points: SetPoint[] = []; //Used to align what this frame "sticks" to.
@@ -85,6 +92,8 @@ export abstract class FrameBase implements IWriteAble {
     public writeCommonData(str: StringStream) {
         if (this.DecorateFileNames) str.writeIndentation().writeLine(`DecorateFileNames,`);
         if (this.SetAllPoints) str.writeIndentation().writeLine(`SetAllPoints,`);
+        if (this.UseActiveContext) str.writeIndentation().writeLine(`UseActiveContext,`);
+        this.writeTabFocus(str);
         this.writeGeneric(str, this.Width, "Width");
         this.writeGeneric(str, this.Height, "Height");
         this.writeGeneric(str, this.Text, "Text");
@@ -97,6 +106,11 @@ export abstract class FrameBase implements IWriteAble {
         }
 
         this.writeFontData(str);
+    }
+    private writeTabFocus(str: StringStream) {
+        if (this.TabFocusPush) str.writeIndentation().writeLine(`TabFocusPush,`);
+        if (this.TabFocusDefault) str.writeIndentation().writeLine(`TabFocusDefault,`);
+        this.writeGeneric(str, this.TabFocusNext, "TabFocusNext");
     }
     public writeFontData(str: StringStream) {
         this.writeColor(str, this.FontColor, "FontColor");

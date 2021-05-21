@@ -1,29 +1,27 @@
 import {FrameBase, FrameBaseArgs} from "./FrameBase";
-import {BaseBackgrounds} from "../base/BaseBackgrounds";
 import {CornerFlags} from "./subtypes/CornerFlags";
 import {Vector4} from "../other/Vector4";
-import {BaseBorders} from "../base/BaseBorders";
 import {StringStream} from "../StringStream";
 
 export type FrameBackdropTypes = FrameBaseArgs & {
-    BackdropBackground?: BaseBackgrounds,
+    BackdropBackground?: string,
     BackdropCornerFlags?: Set<CornerFlags>,
     BackdropCornerSize?: number,
     BackdropBackgroundSize?: number,
     BackdropBackgroundInsets?: Vector4,
-    BackdropEdgeFile?: BaseBorders,
+    BackdropEdgeFile?: string,
 
     BackdropTileBackground?: boolean,
     BackdropBlendAll?: boolean,
 };
 
 export class FrameBackdrop extends FrameBase {
-    public BackdropBackground?: BaseBackgrounds | string;
+    public BackdropBackground?: string;
     public BackdropCornerFlags: Set<CornerFlags> = new Set();
     public BackdropCornerSize?: number;
     public BackdropBackgroundSize?: number;
     public BackdropBackgroundInsets?: Vector4;
-    public BackdropEdgeFile?: BaseBorders | string;
+    public BackdropEdgeFile?: string;
 
     //Flags
     public BackdropTileBackground: boolean = false;

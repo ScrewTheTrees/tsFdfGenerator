@@ -28,6 +28,10 @@ import {Anchor} from "../src/fdf/subtypes/Anchor";
 import {PAlign} from "../src/fdf/subtypes/PAlign";
 import {FrameString} from "../src/fdf/FrameString";
 import {Font} from "../src/fdf/subtypes/Font";
+import {FrameLayer} from "../src/fdf/FrameLayer";
+import {FrameSimpleButton} from "../src/fdf/FrameSimpleButton";
+import {FrameSimpleCheckbox} from "../src/fdf/FrameSimpleCheckbox";
+import {FrameSimpleStatusBar} from "../src/fdf/FrameSimpleStatusBar";
 
 export function testAll() {
     const backdrop = new FrameBackdrop("BackdropTest", {
@@ -117,7 +121,6 @@ export function testAll() {
         TextAreaInset: 0.03,
         TextAreaScrollBar: frameScrollbar
     });
-
     const simpleFrame = new FrameSimpleFrame("TestSimple", {
         DecorateFileNames: true,
         Children: [
@@ -134,6 +137,21 @@ export function testAll() {
           }),
         ],
     });
+    const frameLayer = new FrameLayer("ARTWORK", {
+       Children: [new FrameTexture({File: "cum.jpeg"})]
+    });
+    const frameSimpleButton = new FrameSimpleButton("TestFrameSimpleButton", {
+        Width: 0.39,
+        Height: 0.39,
+    });
+    const frameSimpleCheckbox = new FrameSimpleCheckbox("TestFrameSimpleCheckbox", {
+        NormalTexture: "Normal",
+        PushedTexture: "Poosh",
+        CheckedTexture: "Cheeked",
+    });
+    const frameSimpleStatusBar = new FrameSimpleStatusBar("TestFrameSimpleStatusBar", {
+        BarTexture: "MyHP.dds",
+    });
     return [
         backdrop,
         highlight,
@@ -148,5 +166,9 @@ export function testAll() {
         editBox,
         textArea,
         simpleFrame,
+        frameLayer,
+        frameSimpleButton,
+        frameSimpleCheckbox,
+        frameSimpleStatusBar,
     ];
 }

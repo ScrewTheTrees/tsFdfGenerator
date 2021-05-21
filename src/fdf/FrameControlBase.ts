@@ -13,6 +13,7 @@ export type FrameControlBaseArgs = FrameBaseArgs & {
     ControlDisabledPushedBackdrop?: FrameBackdropType,
 
     ControlMouseOverHighlight?: FrameHighlightType,
+    ControlShortcutKey?: string,
 }
 
 export abstract class FrameControlBase extends FrameBase {
@@ -22,6 +23,7 @@ export abstract class FrameControlBase extends FrameBase {
     public ControlPushedBackdrop?: FrameBackdropType;
     public ControlDisabledBackdrop?: FrameBackdropType;
     public ControlDisabledPushedBackdrop?: FrameBackdropType;
+    public ControlShortcutKey?: string;
 
     public ControlMouseOverHighlight?: FrameHighlightType;
 
@@ -32,6 +34,7 @@ export abstract class FrameControlBase extends FrameBase {
 
     public writeControl(str: StringStream) {
         this.writeSet(str, this.ControlStyle, "ControlStyle");
+        this.writeGeneric(str, this.ControlShortcutKey, "ControlShortcutKey");
 
         this.writeFrame(str, this.ControlBackdrop, "ControlBackdrop");
         this.writeFrame(str, this.ControlPushedBackdrop, "ControlPushedBackdrop");
