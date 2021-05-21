@@ -92,7 +92,7 @@ export class Root {
                 classes.set(frame.Name, frame.compileToClass(depth));
             }
             for (let child of frame.Children) {
-                traverse(child, depth + 1);
+                //traverse(child, depth + 1);
             }
         }
         for (let child of this.Children) {

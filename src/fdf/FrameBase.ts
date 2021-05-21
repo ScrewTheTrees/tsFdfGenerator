@@ -188,8 +188,10 @@ export abstract class FrameBase implements IWriteAble {
         let theClass = new StringStream();
         let theImports = new StringStream();
         let theFields = new StringStream();
+        let theChildren = new StringStream();
 
-        theClass.writeLine(`export class ${this.Name}{`)
+        if (depth == 0) theClass.writeString("export ");
+        theClass.writeLine(`class ${this.Name}{`)
         theClass.pushIndent();
         theFields.pushIndent();
 
@@ -224,7 +226,9 @@ export abstract class FrameBase implements IWriteAble {
                 theFields.writeIndentation()
                     .writeLine(`public ${child.Name}: ${child.Name};`);
 
-                theImports.writeLine(`import {${child.Name}} from "./${child.Name}";`)
+                theChildren.writeString(child.compileToClass(depth + 1));
+
+                //theImports.writeLine(`import {${child.Name}} from "./${child.Name}";`)
             }
             theClass.writeLine(`//Child ${i} ${child.constructor.name}`);
         }
@@ -235,7 +239,7 @@ export abstract class FrameBase implements IWriteAble {
 
         theClass.popIndent();
         theClass.writeLine(`}`);
-        return theImports.data + "\n\n" + theClass.data;
+        return theImports.data + "\n\n" + theClass.data + theChildren.data;
     }
 }
 
