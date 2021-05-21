@@ -12,7 +12,7 @@ export class FrameString extends FrameBase {
     public TextLength?: number;
     public constructor(name?: string, args?: FrameStringArgs) {
         super(name || "");
-        Object.assign(this, args);
+        this.mergeArgs(args);
     }
 
     compileToStringStream(str: StringStream): void {

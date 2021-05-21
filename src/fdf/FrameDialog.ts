@@ -13,7 +13,7 @@ export class FrameDialog extends FrameBase {
 
     public constructor(name: string, args?: FrameDialogArgs) {
         super(name);
-        Object.assign(this, args);
+        this.mergeArgs(args);
     }
 
     compileToStringStream(str: StringStream): void {

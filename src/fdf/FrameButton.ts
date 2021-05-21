@@ -7,7 +7,7 @@ export type FrameButtonArgs = FrameControlBaseArgs & {};
 export class FrameButton extends FrameControlBase {
     public constructor(name: string, args?: FrameButtonArgs) {
         super(name);
-        Object.assign(this, args);
+        this.mergeArgs(args);
     }
 
     compileToStringStream(str: StringStream): void {

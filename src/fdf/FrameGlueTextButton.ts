@@ -14,7 +14,7 @@ export class FrameGlueTextButton extends FrameControlBase {
 
     public constructor(name: string, args?: FrameGlueTextButtonArgs) {
         super(name);
-        Object.assign(this, args);
+        this.mergeArgs(args);
     }
 
     compileToStringStream(str: StringStream): void {

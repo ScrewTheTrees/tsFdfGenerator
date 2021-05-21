@@ -19,7 +19,7 @@ export class FrameTextArea extends FrameControlBase {
 
     public constructor(name: string, args?: FrameTextAreaArgs) {
         super(name);
-        Object.assign(this, args);
+        this.mergeArgs(args);
     }
 
     compileToStringStream(str: StringStream): void {

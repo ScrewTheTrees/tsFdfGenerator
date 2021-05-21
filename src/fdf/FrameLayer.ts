@@ -11,7 +11,7 @@ export class FrameLayer extends FrameBase {
     public constructor(type: FrameLayerTypes, args?: FrameLayerArgs) {
         super("");
         this.Type = type;
-        Object.assign(this, args);
+        this.mergeArgs(args);
     }
 
     compileToStringStream(str: StringStream): void {

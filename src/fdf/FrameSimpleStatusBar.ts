@@ -17,7 +17,7 @@ export class FrameSimpleStatusBar extends FrameControlBase {
 
     public constructor(name: string, args?: FrameSimpleStatusBarArgs) {
         super(name);
-        Object.assign(this, args);
+        this.mergeArgs(args);
     }
 
     compileToStringStream(str: StringStream): void {

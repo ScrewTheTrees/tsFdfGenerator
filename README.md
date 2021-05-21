@@ -3,7 +3,7 @@
 Use typescript to build WC3 UI.
 
 1) Use OOP and Typescript to build FDF files.
-2) Generate and FDF file that you can later save.
+2) Generate FDF files that you can save where you need it.
 3) Generate TS definitions to use in the map.
 
 # Functional example
@@ -41,7 +41,7 @@ export class FrameSimpleButtonCustomThing extends FrameSimpleButton {
         this.Width = 0.0032;
         this.Height = 0.0323;
         
-        Object.assign(this, args);
+        this.mergeArgs(args);
     }
 }
 const root = new Root({

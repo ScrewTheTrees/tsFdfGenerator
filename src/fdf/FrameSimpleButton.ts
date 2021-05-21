@@ -10,7 +10,7 @@ export class FrameSimpleButton extends FrameControlBase {
 
     public constructor(name: string, args?: FrameSimpleButtonArgs) {
         super(name);
-        Object.assign(this, args);
+        this.mergeArgs(args);
     }
 
     compileToStringStream(str: StringStream): void {

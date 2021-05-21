@@ -7,7 +7,7 @@ export type FrameTextArgs = FrameBaseArgs & {
 export class FrameText extends FrameBase {
     public constructor(name: string, args?: FrameTextArgs) {
         super(name);
-        Object.assign(this, args);
+        this.mergeArgs(args);
     }
 
     compileToStringStream(str: StringStream): void {

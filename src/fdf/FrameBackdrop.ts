@@ -29,7 +29,7 @@ export class FrameBackdrop extends FrameBase {
 
     public constructor(name: string, args?: FrameBackdropTypes) {
         super(name);
-        Object.assign(this, args);
+        this.mergeArgs(args);
     }
 
     compileToStringStream(str: StringStream): void {

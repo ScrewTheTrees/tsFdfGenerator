@@ -81,6 +81,9 @@ export abstract class FrameBase implements IWriteAble {
 
     public constructor(name: string, args?: FrameBaseArgs) {
         this.Name = name;
+        this.mergeArgs(args);
+    }
+    public mergeArgs(args?: FrameBaseArgs) {
         if (args) Object.assign(this, args);
     }
     public writeBaseHeader(str: StringStream, type: string) {

@@ -18,7 +18,7 @@ export class FrameTexture extends FrameBase {
 
     public constructor(args?: FrameTextureArgs) {
         super("");
-        Object.assign(this, args);
+        this.mergeArgs(args);
     }
 
     compileToStringStream(str: StringStream): void {

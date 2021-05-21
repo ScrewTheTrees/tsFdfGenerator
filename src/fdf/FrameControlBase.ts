@@ -29,7 +29,7 @@ export abstract class FrameControlBase extends FrameBase {
 
     public constructor(name: string, args?: FrameControlBaseArgs) {
         super(name);
-        if (args) Object.assign(this, args);
+        if (args) this.mergeArgs(args);
     }
 
     public writeControl(str: StringStream) {

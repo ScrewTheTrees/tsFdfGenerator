@@ -15,7 +15,7 @@ export class FrameGlueCheckbox extends FrameControlBase {
 
     public constructor(name: string, args?: FrameGlueCheckboxArgs) {
         super(name);
-        Object.assign(this, args);
+        this.mergeArgs(args);
     }
 
     compileToStringStream(str: StringStream): void {

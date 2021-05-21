@@ -26,7 +26,7 @@ export class FrameSlider extends FrameControlBase {
 
     public constructor(name: string, args?: FrameSliderArgs) {
         super(name);
-        Object.assign(this, args);
+        this.mergeArgs(args);
     }
 
     compileToStringStream(str: StringStream): void {

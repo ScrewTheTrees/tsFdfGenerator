@@ -15,7 +15,7 @@ export class FrameEditBox extends FrameControlBase {
 
     public constructor(name: string, args?: FrameEditBoxArgs) {
         super(name);
-        Object.assign(this, args);
+        this.mergeArgs(args);
     }
 
     compileToStringStream(str: StringStream): void {

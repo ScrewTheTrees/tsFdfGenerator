@@ -19,7 +19,7 @@ export class FramePopupMenu extends FrameControlBase {
 
     public constructor(name: string, args?: FramePopupMenuArgs) {
         super(name);
-        Object.assign(this, args);
+        this.mergeArgs(args);
     }
 
     compileToStringStream(str: StringStream): void {

@@ -15,7 +15,7 @@ export class FrameMenu extends FrameControlBase {
 
     public constructor(name: string, args?: FrameMenuArgs) {
         super(name);
-        Object.assign(this, args);
+        this.mergeArgs(args);
     }
 
     compileToStringStream(str: StringStream): void {

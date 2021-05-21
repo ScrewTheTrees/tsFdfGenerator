@@ -17,7 +17,7 @@ export class FrameSimpleCheckbox extends FrameControlBase {
 
     public constructor(name: string, args?: FrameSimpleCheckboxArgs) {
         super(name);
-        Object.assign(this, args);
+        this.mergeArgs(args);
     }
 
     compileToStringStream(str: StringStream): void {
