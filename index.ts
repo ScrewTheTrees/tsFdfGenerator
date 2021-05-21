@@ -48,13 +48,13 @@ testAllStuffClassDef += "}\n"
 if (!fs.existsSync("./target")) {
     fs.mkdir("./target", console.log);
 }
-fs.writeFileSync("./target/testAllianceDialog.txt", allianceDialogRoot.compileFile().data);
-fs.writeFileSync("./target/testChatDialog.txt", chatDialogRoot.compileFile().data);
-fs.writeFileSync("./target/testAllStuff.txt", testAllStuffRoot.compileFile().data);
+fs.writeFileSync("./target/testAllianceDialog.txt", allianceDialogRoot.compileFDFFile().data);
+fs.writeFileSync("./target/testChatDialog.txt", chatDialogRoot.compileFDFFile().data);
+fs.writeFileSync("./target/testAllStuff.txt", testAllStuffRoot.compileFDFFile().data);
 fs.writeFileSync("./target/testAllStuff.ts", testAllStuffClassDef);
 
 
-const textCase = allianceDialogRoot.compileClasses("TestUIRoot");
+const textCase: Map<string, string> = allianceDialogRoot.compileClasses("TestUIRoot");
 if (!fs.existsSync("./target/classes")) {
     fs.mkdir("./target/classes", console.log);
 }

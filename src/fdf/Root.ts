@@ -19,7 +19,7 @@ export class Root {
         this.Children.push(frame);
     }
 
-    compileFile(): StringStream {
+    compileFDFFile(): StringStream {
         const str: StringStream = new StringStream();
         if (this.IncludeFiles.length > 0) {
             str.writeString("//--Includes--\n");
@@ -38,7 +38,7 @@ export class Root {
         return str;
     }
 
-    public compileToClass(fileName: string) {
+    public compileUsableClass(fileName: string) {
         let theClass = new StringStream();
         let theImports = new StringStream();
         let theFields = new StringStream();
@@ -80,9 +80,9 @@ export class Root {
     }
 
     compileClasses(fileName: string) {
-        const classes: Map<String, String> = new Map();
+        const classes: Map<string, string> = new Map();
 
-        classes.set(fileName, this.compileToClass(fileName));
+        classes.set(fileName, this.compileUsableClass(fileName));
 
         function traverse(frame: FrameBase, depth: number = 0) {
             if (classes.has(frame.Name)) {
