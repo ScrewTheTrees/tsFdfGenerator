@@ -4,7 +4,7 @@ import {StringStream} from "../StringStream";
 export type FrameLayerArgs = FrameBaseArgs & {
 };
 
-export type FrameLayerTypes = ('ARTWORK');
+export type FrameLayerTypes = ('ARTWORK' | 'BACKGROUND');
 
 export class FrameLayer extends FrameBase {
     public Type: FrameLayerTypes;

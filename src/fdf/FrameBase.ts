@@ -35,6 +35,9 @@ export type FrameBaseArgs = {
     FontDisabledColor?: RGBColor,
     FontShadowColor?: RGBColor,
     FontShadowOffset?: Vector2,
+
+    //Special flags.
+    HideOnLoad?: boolean,
 };
 
 export abstract class FrameBase implements IWriteAble {
@@ -54,10 +57,12 @@ export abstract class FrameBase implements IWriteAble {
     public TabFocusDefault: boolean = false; //This is the default Tab focus button.
     public TabFocusNext?: string; //The next glue button to tab to when hitting Tab
 
+    //Special
     public Children: FrameBase[] = []; //Children of this frame.
     public Points: SetPoint[] = []; //Used to align what this frame "sticks" to.
     public Anchors: Anchor[] = []; //Used to align what this frame "sticks" to direct parent. Mostly used for Texture/FrameString.
 
+    //Text stuff
     public Text?: string;
     public FrameFont?: FrameFont;
     public FontJustificationH?: FontJustify; //How the text should expand/align.
@@ -69,6 +74,9 @@ export abstract class FrameBase implements IWriteAble {
     public FontDisabledColor?: RGBColor; //RGBA
     public FontShadowColor?: RGBColor; //RGBA
     public FontShadowOffset?: Vector2;
+
+    //Special flags
+    public HideOnLoad: boolean = false;
 
     public addChild(frame: FrameBase) {
         this.Children.push(frame);
@@ -216,6 +224,10 @@ export abstract class FrameBase implements IWriteAble {
         } else {
             theClass.writeIndentation()
                 .writeLine(`this.frameHandle = BlzGetFrameByName("${this.Name}",this.frameContext);`);
+        }
+        if (this.HideOnLoad) {
+            theClass.writeIndentation()
+                .writeLine(`BlzFrameSetVisible(this.frameHandle, false);`);
         }
 
         for (let i = 0; i < this.Children.length; i++) {

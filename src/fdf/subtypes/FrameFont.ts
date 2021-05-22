@@ -7,7 +7,7 @@ export class FrameFont implements IWriteAble {
     public size: number;
     public unknown: string;
 
-    constructor(font: BaseFonts, size: number, unknown: string) {
+    constructor(font: BaseFonts, size: number, unknown: string = "") {
         this.font = font;
         this.size = size;
         this.unknown = unknown;

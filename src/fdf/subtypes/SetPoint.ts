@@ -1,7 +1,5 @@
 import {IWriteAble} from "../../IWriteAble";
 import {StringStream} from "../../StringStream";
-import {FrameBase} from "../FrameBase";
-import {BaseFrames} from "../../base/BaseFrames";
 import {PAlign} from "./PAlign";
 import {FrameType} from "../FrameTypes";
 
@@ -9,22 +7,26 @@ export class SetPoint implements IWriteAble {
     public myPoint: PAlign;
     public parentFrame: FrameType;
     public parentPoint: PAlign;
-    public xx: number;
-    public yy: number;
+    public xAlign: number;
+    public yAlign: number;
 
-    constructor(myPoint: PAlign, parentFrame: FrameType, parentPoint: PAlign, xx: number, yy: number) {
+    constructor(myPoint: PAlign, parentFrame: FrameType, parentPoint: PAlign, xx: number = 0, yy: number = 0) {
         this.myPoint = myPoint;
         this.parentFrame = parentFrame;
         this.parentPoint = parentPoint;
-        this.xx = xx;
-        this.yy = yy;
+        this.xAlign = xx;
+        this.yAlign = yy;
     }
     compileToStringStream(str: StringStream): void {
         str.writeIndentation()
             .writeString(`SetPoint ${this.myPoint}, `);
 
         str.writeString(`"${typeof this.parentFrame == "string" ? this.parentFrame : this.parentFrame.Name}", `);
-        str.writeString(`${this.parentPoint}, ${this.xx}, ${this.yy}, \n`);
+        str.writeString(`${this.parentPoint}, ${this.xAlign}, ${this.yAlign}, \n`);
+    }
+
+    public static Anchor(point: PAlign, parentFrame: FrameType, xAlign: number = 0, yAlign: number = 0) {
+        return new SetPoint(point, parentFrame, point, xAlign, yAlign);
     }
 
 }

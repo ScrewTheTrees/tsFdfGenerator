@@ -1,17 +1,18 @@
 import {StringStream} from "../StringStream";
 import {FrameBase, FrameBaseArgs} from "./FrameBase";
 
+export type HighlightAlphaModes = string | 'ADD' | 'BLEND';
 
 export type FrameHighlightArgs = FrameBaseArgs & {
     HighlightType?: string | 'FILETEXTURE',
     HighlightAlphaFile?: string,
-    HighlightAlphaMode?: string | 'ADD',
+    HighlightAlphaMode?: HighlightAlphaModes,
 };
 
 export class FrameHighlight extends FrameBase {
     public HighlightType?: string; //"FILETEXTURE"
     public HighlightAlphaFile?: string; //EscMenuButtonMouseOverHighlight
-    public HighlightAlphaMode?: string; //ADD
+    public HighlightAlphaMode?: HighlightAlphaModes;
 
     public constructor(name: string, args?: FrameHighlightArgs) {
         super(name);

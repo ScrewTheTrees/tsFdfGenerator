@@ -124,21 +124,21 @@ export function testAll() {
     const simpleFrame = new FrameSimpleFrame("TestSimple", {
         DecorateFileNames: true,
         Children: [
-          new FrameTexture({
-              InheritsFrom: "ResourceBarIconTemplate",
-              Anchors: [new Anchor(PAlign.TOPLEFT, 0.0, -0.003125)],
-              File: "GoldIcon",
-          }),
-          new FrameString("testString",{
-              InheritsFrom: "ResourceBarTextTemplate",
-              Anchors: [new Anchor(PAlign.TOPRIGHT, -0.267, -0.003125)],
-              Width: 0.054875,
-              Font: new Font(BaseFonts.MasterFont, 0.01)
-          }),
+            new FrameTexture(undefined, {
+                InheritsFrom: "ResourceBarIconTemplate",
+                Anchors: [new Anchor(PAlign.TOPLEFT, 0.0, -0.003125)],
+                File: "GoldIcon",
+            }),
+            new FrameString("testString", {
+                InheritsFrom: "ResourceBarTextTemplate",
+                Anchors: [new Anchor(PAlign.TOPRIGHT, -0.267, -0.003125)],
+                Width: 0.054875,
+                Font: new Font(BaseFonts.MasterFont, 0.01)
+            }),
         ],
     });
     const frameLayer = new FrameLayer("ARTWORK", {
-       Children: [new FrameTexture({File: "cum.jpeg"})]
+        Children: [new FrameTexture(undefined, {File: "cum.jpeg"})],
     });
     const frameSimpleButton = new FrameSimpleButton("TestFrameSimpleButton", {
         Width: 0.39,

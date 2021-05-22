@@ -155,6 +155,7 @@ export function testMakeAllianceDialog() {
     let allianceDialogScrollBar = new FrameScrollbar("AllianceDialogScrollBar", {
         InheritsFrom: BaseFrames.StandardScrollBarTemplate,
         InheritsWithChildren: true,
+        HideOnLoad: true,
     });
 
     allianceDialog.addChild(allianceAcceptButton);

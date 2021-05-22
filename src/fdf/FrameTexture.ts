@@ -9,15 +9,17 @@ export type FrameTextureArgs = FrameBaseArgs & {
 };
 
 /**
- * These are unnamed, so take great care in using them.
+ * FrameTexture can only be inside SimpleFrames,
+ * I should do a better representation of that.
+ * These can be both unnamed or named.
  */
 export class FrameTexture extends FrameBase {
     public File?: string;
     public TexCoord?: Vector4;
     public AlphaMode?: string;
 
-    public constructor(args?: FrameTextureArgs) {
-        super("");
+    public constructor(name?: string, args?: FrameTextureArgs) {
+        super(name || "");
         this.mergeArgs(args);
     }
 

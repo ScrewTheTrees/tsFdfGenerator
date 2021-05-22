@@ -7,6 +7,10 @@ export type FrameStringArgs = FrameBaseArgs & {
     TextLength?: number,
 };
 
+/**
+ * FrameStrings can only be inside SimpleFrames,
+ * I should do a better representation of that.
+ */
 export class FrameString extends FrameBase {
     public Font?: Font;
     public TextLength?: number;

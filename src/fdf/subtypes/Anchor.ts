@@ -7,10 +7,10 @@ export class Anchor implements IWriteAble {
     public xAlign: number; //These alignments work very wonky at times. Weird stuff really.
     public yAlign: number;
 
-    constructor(myPoint: PAlign, xx: number, yy: number) {
+    constructor(myPoint: PAlign, xAlign: number = 0, yAlign: number = 0) {
         this.myPoint = myPoint;
-        this.xAlign = xx;
-        this.yAlign = yy;
+        this.xAlign = xAlign;
+        this.yAlign = yAlign;
     }
     compileToStringStream(str: StringStream): void {
         str.writeIndentation()

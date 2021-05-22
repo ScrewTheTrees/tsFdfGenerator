@@ -3,7 +3,7 @@ import {CornerFlags} from "./subtypes/CornerFlags";
 import {Vector4} from "../other/Vector4";
 import {StringStream} from "../StringStream";
 
-export type FrameBackdropTypes = FrameBaseArgs & {
+export type FrameBackdropArgs = FrameBaseArgs & {
     BackdropBackground?: string,
     BackdropCornerFlags?: Set<CornerFlags>,
     BackdropCornerSize?: number,
@@ -27,7 +27,7 @@ export class FrameBackdrop extends FrameBase {
     public BackdropTileBackground: boolean = false;
     public BackdropBlendAll: boolean = false;
 
-    public constructor(name: string, args?: FrameBackdropTypes) {
+    public constructor(name: string, args?: FrameBackdropArgs) {
         super(name);
         this.mergeArgs(args);
     }
