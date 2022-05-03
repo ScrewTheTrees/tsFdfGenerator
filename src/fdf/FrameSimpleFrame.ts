@@ -25,8 +25,3 @@ export class FrameSimpleFrame extends FrameBase {
         return true;
     }
 }
-
-
-
-
-

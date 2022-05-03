@@ -207,19 +207,22 @@ export abstract class FrameBase implements IWriteAble {
         theFields.pushIndent();
 
         theClass.writeIndentation().writeLine(`public frameHandle: framehandle;`);
+        theClass.writeIndentation().writeLine(`public parent: framehandle;`);
         theClass.writeIndentation().writeLine(`public frameContext: number;`);
         theClass.writeLine("");
 
-        theClass.writeIndentation().writeLine(`public constructor(context: number) {`); //Start constructor.
-        theClass.pushIndent().writeIndentation()
-            .writeLine(`this.frameContext = context;`)
+        theClass.writeIndentation().writeLine(`public constructor(context: number, parent: framehandle = BlzGetOriginFrame(ORIGIN_FRAME_GAME_UI, 0)) {`); //Start constructor.
+        theClass.pushIndent();
+        theClass.writeIndentation().writeLine(`this.frameContext = context;`);
+        theClass.writeIndentation().writeLine(`this.parent = parent;`)
+
         if (depth == 0) {
             if (this.isSimple()) {
                 theClass.writeIndentation()
-                    .writeLine(`this.frameHandle = BlzCreateSimpleFrame("${this.Name}", BlzGetOriginFrame(ORIGIN_FRAME_GAME_UI, 0), this.frameContext);`);
+                    .writeLine(`this.frameHandle = BlzCreateSimpleFrame("${this.Name}", this.parent, this.frameContext);`);
             } else {
                 theClass.writeIndentation()
-                    .writeLine(`this.frameHandle = BlzCreateFrame("${this.Name}", BlzGetOriginFrame(ORIGIN_FRAME_GAME_UI, 0), 0, this.frameContext);`);
+                    .writeLine(`this.frameHandle = BlzCreateFrame("${this.Name}", this.parent, 0, this.frameContext);`);
             }
         } else {
             theClass.writeIndentation()
@@ -235,7 +238,7 @@ export abstract class FrameBase implements IWriteAble {
             if (child.Name.length > 0) {
                 //Write constructor
                 theClass.writeIndentation()
-                    .writeString(`this.${child.Name} = new ${child.Name}(this.frameContext);`);
+                    .writeString(`this.${child.Name} = new ${child.Name}(this.frameContext, this.frameHandle);`);
 
                 //Write fields
                 theFields.writeIndentation()
@@ -248,13 +251,64 @@ export abstract class FrameBase implements IWriteAble {
             theClass.writeLine(`//Child ${i} ${child.constructor.name}`);
         }
 
+        theClass.writeLine(this.createClassConstructor().data)
+
         theClass.popIndent().writeIndentation().writeLine(`}`); //End Constructor.
 
         theClass.writeLine(theFields.data);
 
+        theClass.writeLine(this.createClassApi().data);
+
         theClass.popIndent();
         theClass.writeLine(`}`);
+
         return theImports.data + "\n\n" + theClass.data + theChildren.data;
     }
-}
 
+    public createClassApi() {
+        let theClass = new StringStream();
+        theClass.pushIndent();
+        this.compileStandardApi(theClass);
+
+        theClass.popIndent();
+        return theClass;
+    }
+
+    protected createClassConstructor() {
+        let theClass = new StringStream();
+        theClass.pushIndent();
+        this.compileStandardClassConstructor(theClass);
+
+        theClass.popIndent();
+        return theClass;
+    }
+
+    protected compileStandardClassConstructor(theClass: StringStream) {
+        theClass.writeIndentation().writeLine("//Custom constructor");
+    }
+
+    protected compileStandardApi(theClass: StringStream) {
+        //Text
+        theClass.writeIndentation().writeLine(`public setText(text: string) {`);
+        theClass.pushIndent().writeIndentation().writeLine(`BlzFrameSetText(this.frameHandle, text);`)
+            .writeIndentation().writeLine(`return this;`).popIndent();
+        theClass.writeIndentation().writeLine(`}`);
+        theClass.writeIndentation().writeLine(`public addText(text: string) {`);
+        theClass.pushIndent().writeIndentation().writeLine(`BlzFrameAddText(this.frameHandle, text);`)
+            .writeIndentation().writeLine(`return this;`).popIndent();
+        theClass.writeIndentation().writeLine(`}`);
+        theClass.writeIndentation().writeLine(`public getText() {`);
+        theClass.pushIndent().writeIndentation().writeLine(`return BlzFrameGetText(this.frameHandle);`).popIndent();
+        theClass.writeIndentation().writeLine(`}`);
+        //Points
+        theClass.writeIndentation().writeLine(`public setPoint(childPoint: framepointtype, relative: framehandle, parentPoint: framepointtype, x: number, y: number) {`);
+        theClass.pushIndent().writeIndentation().writeLine(`BlzFrameSetPoint(this.frameHandle, childPoint, relative, parentPoint, x, y);`)
+            .writeIndentation().writeLine(`return this;`).popIndent();
+        theClass.writeIndentation().writeLine(`}`);
+        theClass.writeIndentation().writeLine(`public setPointAbsolute(childPoint: framepointtype, x: number, y: number) {`);
+        theClass.pushIndent().writeIndentation().writeLine(`BlzFrameSetAbsPoint(this.frameHandle, childPoint, x, y);`)
+            .writeIndentation().writeLine(`return this;`).popIndent();
+        theClass.writeIndentation().writeLine(`}`);
+
+    }
+}
